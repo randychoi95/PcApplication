@@ -13,7 +13,7 @@ public class FindIdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_findid);
 
-    }//oncreate
+    }//on
 
 }//class
 
