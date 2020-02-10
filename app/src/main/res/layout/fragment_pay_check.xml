@@ -31,6 +31,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:text="날짜"
+                android:fontFamily="@font/nanumgothic_extrabold"
                 android:textColor="@android:color/black"
                 android:textSize="30sp" />
 
@@ -41,6 +42,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:text="결제 비용"
+                android:fontFamily="@font/nanumgothic_extrabold"
                 android:textColor="@android:color/black"
                 android:textSize="30sp" />
         </LinearLayout>

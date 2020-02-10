@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     tools:context=".After_Main.Find_Store_Tap.PC_Info.Pc_Info_TabFragment">
 
 
@@ -57,15 +57,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Ezen 피시방"
-                        android:textColor="@android:color/black"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="@font/nanumgothic_bold"
                         android:textSize="30sp" />
 
                     <Button
                         android:id="@+id/btn_favorite"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_marginLeft="10dp"
-                        android:text="즐겨찾기" />
+                        android:background="@drawable/favorite" />
 
                 </LinearLayout>
 
@@ -77,6 +78,7 @@
                     android:layout_weight="1"
                     android:text="pc방 주소"
                     android:textColor="@android:color/darker_gray"
+                    android:fontFamily="@font/jua_regular"
                     android:textSize="24sp" />
 
             </LinearLayout>
@@ -104,7 +106,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
                 android:text="4.0/5"
-                android:textColor="@android:color/black"
+                android:fontFamily="@font/jua_regular"
+                android:textColor="@android:color/white"
                 android:textSize="24sp" />
         </LinearLayout>
 
@@ -118,7 +121,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:text="PC방 사양"
-            android:textColor="@android:color/black"
+            android:fontFamily="@font/nanumgothic_bold"
+            android:textColor="@android:color/white"
             android:textSize="30sp" />
 
         <LinearLayout
@@ -132,6 +136,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CPU :"
+                android:fontFamily="@font/jua_regular"
+                android:textColor="@android:color/white"
                 android:textSize="24sp" />
 
             <TextView
@@ -140,6 +146,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:text="CPU사양"
+                android:fontFamily="@font/jua_regular"
+                android:textColor="@android:color/white"
                 android:textSize="24sp" />
         </LinearLayout>
 
@@ -154,6 +162,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:text="RAM :"
+                android:fontFamily="@font/jua_regular"
+                android:textColor="@android:color/white"
                 android:textSize="24sp" />
 
             <TextView
@@ -162,6 +172,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:text="RAM 사양"
+                android:fontFamily="@font/jua_regular"
+                android:textColor="@android:color/white"
                 android:textSize="24sp" />
         </LinearLayout>
 
@@ -176,6 +188,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:text="VGA :"
+                android:fontFamily="@font/jua_regular"
+                android:textColor="@android:color/white"
                 android:textSize="24sp" />
 
             <TextView
@@ -184,6 +198,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:text="VGA 사양"
+                android:fontFamily="@font/jua_regular"
+                android:textColor="@android:color/white"
                 android:textSize="24sp" />
 
 
@@ -195,10 +211,13 @@
 
         <Button
             android:id="@+id/btn_reservation"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@drawable/btn_background"
             android:text="예약하기"
+            android:fontFamily="@font/jua_regular"
+            android:textColor="@android:color/black"
             android:textSize="24sp" />
 
 

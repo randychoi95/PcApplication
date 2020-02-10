@@ -24,6 +24,7 @@
             android:text="비밀번호 재설정"
             android:textColor="@android:color/black"
             android:textSize="24sp"
+            android:fontFamily="@font/nanumgothic_bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,6 +39,7 @@
             android:hint="비밀번호를 입력하시오."
             android:inputType="textPassword"
             android:textSize="18sp"
+            android:fontFamily="@font/jua_regular"
             app:layout_constraintBaseline_toBaselineOf="@+id/textRePw"
             app:layout_constraintStart_toEndOf="@+id/textRePw" />
 
@@ -49,6 +51,7 @@
             android:text="비밀번호 재입력"
             android:textColor="@android:color/black"
             android:textSize="24sp"
+            android:fontFamily="@font/nanumgothic_bold"
             app:layout_constraintStart_toStartOf="@+id/textRePw"
             app:layout_constraintTop_toBottomOf="@+id/textRePw" />
 
@@ -58,8 +61,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:background="@null
-"
+            android:background="@null"
+            android:fontFamily="@font/jua_regular"
             android:ems="10"
             android:hint="비밀번호를 재입력하시오."
             android:inputType="textPersonName"
@@ -73,6 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="확인"
+            android:fontFamily="@font/nanumgothic_bold"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

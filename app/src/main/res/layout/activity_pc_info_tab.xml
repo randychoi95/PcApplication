@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     android:orientation="vertical">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/background_light"
+        android:background="#C8000000"
         android:elevation="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +19,7 @@
         app:tabGravity="fill"
         app:tabMode="fixed"
         app:tabSelectedTextColor="#FFBB00"
-        app:tabTextColor="#000000"></com.google.android.material.tabs.TabLayout>
+        app:tabTextColor="#FFFFFF"></com.google.android.material.tabs.TabLayout>
 
     <FrameLayout
         android:id="@+id/container"
@@ -30,6 +31,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="44dp"
+        android:background="#706F6F"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

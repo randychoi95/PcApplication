@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/bottom_line">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,6 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             app:srcCompat="@drawable/user" />
 
         <LinearLayout
@@ -27,8 +29,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:text="사용자 ID"
+                android:fontFamily="@font/jua_regular"
                 android:textColor="@android:color/black"
                 android:textSize="24sp" />
 
@@ -38,9 +42,10 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/jua_regular"
                 android:layout_weight="1"
                 android:text="등록일"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@android:color/white"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -51,7 +56,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:text="댓글"
+        android:fontFamily="@font/jua_regular"
         android:textColor="@android:color/black"
         android:textSize="18sp" />
 </LinearLayout>

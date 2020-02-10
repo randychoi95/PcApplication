@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ezen.mission10">
+    package="com.ezen.MyPcApplication">
 
     <application
         android:allowBackup="true"
@@ -9,16 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".First_View.FindPwActivity"></activity>
-        <activity android:name=".First_View.FindIdActivity" />
-        <activity android:name=".Side_Navigation.Person.ConvertPwActivity" />
-        <activity android:name=".Side_Navigation.Person_info_list.Person_ListActivity" />
-        <activity android:name=".After_Main.Notice_Tap.Notice_ContentActivity" />
-        <activity android:name=".First_View.JoinActivity"  android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".After_Main.Find_Store_Tap.PC_Review.Pc_Review_WriteActivity" />
-        <activity android:name=".After_Main.Find_Store_Tap.PC_Info.PC_Reservation.ReservationActivity" />
-        <activity android:name=".After_Main.Find_Store_Tap.PC_Info.Pc_Info_TabActivity" />
-        <activity android:name=".First_View.FirstActivity" android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name="com.ezen.MyPcApplication.First_View.FindPwActivity"></activity>
+        <activity android:name="com.ezen.MyPcApplication.First_View.FindIdActivity" />
+        <activity android:name="com.ezen.MyPcApplication.Side_Navigation.Person.ConvertPwActivity" />
+        <activity android:name="com.ezen.MyPcApplication.After_Main.Notice_Tap.Notice_ContentActivity" />
+        <activity android:name="com.ezen.MyPcApplication.First_View.JoinActivity"  android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Review.Pc_Review_WriteActivity" />
+        <activity android:name="com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.PC_Reservation.ReservationActivity" />
+        <activity android:name="com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.Pc_Info_TabActivity" />
+        <activity android:name="com.ezen.MyPcApplication.First_View.FirstActivity" android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".After_Main.MainActivity"
+            android:name="com.ezen.MyPcApplication.After_Main.MainActivity"
             android:label="MyPCapplication"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

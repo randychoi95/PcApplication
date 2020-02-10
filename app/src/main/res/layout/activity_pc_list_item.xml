@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/bottom_line">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,6 +18,7 @@
             android:layout_weight="1"
             android:text="PC방 이름"
             android:textColor="#FFFFFF"
+            android:fontFamily="@font/jua_regular"
             android:textSize="30sp" />
 
         <TextView
@@ -27,6 +29,7 @@
             android:layout_weight="1"
             android:gravity="right"
             android:text="거리"
+            android:fontFamily="@font/jua_regular"
             android:textColor="#FFFFFF"
             android:textSize="24sp" />
 
@@ -38,8 +41,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:text="pc방 주소"
         android:textColor="#FFFFFF"
+        android:fontFamily="@font/jua_regular"
         android:textSize="18sp" />
 
 </LinearLayout>

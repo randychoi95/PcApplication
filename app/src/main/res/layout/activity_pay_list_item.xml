@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/bottom_line">
 
 
     <LinearLayout
@@ -16,7 +17,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
+            android:fontFamily="@font/jua_regular"
             android:text="결제한 날짜"
             android:textSize="18sp" />
 
@@ -25,7 +28,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
+            android:fontFamily="@font/jua_regular"
             android:text="결제 비용" />
     </LinearLayout>
 

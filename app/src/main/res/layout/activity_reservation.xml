@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/reservation_standard"
@@ -40,7 +41,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="24dp"
             android:text="예약가능"
-            android:textColor="@android:color/black"
+            android:fontFamily="@font/jua_regular"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/seat_ok"
             app:layout_constraintTop_toTopOf="parent" />
@@ -52,6 +54,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
+            android:fontFamily="@font/jua_regular"
             android:background="@android:color/darker_gray"
             app:layout_constraintStart_toEndOf="@+id/text_seat_ok"
             app:layout_constraintTop_toTopOf="parent" />
@@ -64,8 +67,9 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="24dp"
             android:text="예약대기"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
+            android:fontFamily="@font/jua_regular"
             app:layout_constraintStart_toEndOf="@+id/seat_standby"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,7 +94,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="24dp"
             android:text="예약 불가"
-            android:textColor="@android:color/black"
+            android:fontFamily="@font/jua_regular"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/seat_not"
             app:layout_constraintTop_toTopOf="parent" />
@@ -295,7 +300,7 @@
                 android:layout_marginRight="8dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/seat_line3"
                 app:layout_constraintTop_toBottomOf="@+id/seat_line3">
 
                 <Button
@@ -385,6 +390,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="44dp"
         android:text="※ 예약가능 한 자리를 지정한 후, 대기시간 한 시간을 초과한 경우 예약이 취소가 됩니다.\n※ 계정 당 한 개의 자리만 예약을 하실 수 있습니다. "
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/jua_regular"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
