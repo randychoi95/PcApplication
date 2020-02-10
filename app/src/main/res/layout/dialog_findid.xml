@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/find_id_info2"
+        android:layout_width="410dp"
+        android:layout_height="50dp"
+        android:background="@color/design_default_color_primary_dark"
+        android:gravity="center"
+        android:text="ID 찾기"
+        android:textColor="@android:color/white"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/find_edit_name"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="이름을 입력하세요"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/find_id_info2"
+        app:layout_constraintTop_toBottomOf="@+id/find_id_info2" />
+
+    <EditText
+        android:id="@+id/find_edit_phone"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="전화번호를 입력하세요"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/find_edit_name"
+        app:layout_constraintTop_toBottomOf="@+id/find_edit_name" />
+
+    <Button
+        android:id="@+id/find_btn_ok"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="확 인"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/find_edit_phone"
+        app:layout_constraintTop_toBottomOf="@+id/find_edit_phone" />
+
+    <Button
+        android:id="@+id/find_btn_cancel"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="취 소"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/find_edit_phone"
+        app:layout_constraintTop_toBottomOf="@+id/find_edit_phone" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

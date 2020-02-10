@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/find_repw_info"
+        android:layout_width="410dp"
+        android:layout_height="50dp"
+        android:background="@color/design_default_color_primary_dark"
+        android:gravity="center"
+        android:text="PW 찾기(재설정)"
+        android:textColor="@android:color/white"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edit_pw"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="비밀번호를  재설정 "
+        android:inputType="textPersonName"
+        android:textColorHint="@color/design_default_color_primary_dark"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/find_repw_info"
+        app:layout_constraintTop_toBottomOf="@+id/find_repw_info" />
+
+    <EditText
+        android:id="@+id/edit_repw"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="비밀번호를  재입력"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/design_default_color_primary_dark"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/edit_pw"
+        app:layout_constraintTop_toBottomOf="@+id/edit_pw" />
+
+    <Button
+        android:id="@+id/repw_btn_ok"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="확 인"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/edit_repw"
+        app:layout_constraintTop_toBottomOf="@+id/edit_repw" />
+
+    <Button
+        android:id="@+id/repw_btn_cancel"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="취 소"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/edit_repw"
+        app:layout_constraintTop_toBottomOf="@+id/edit_repw" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

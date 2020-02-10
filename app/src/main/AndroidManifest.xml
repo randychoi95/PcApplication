@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ezen.mission10">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="MyPCapplication"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Side_Navigation.Person.ConvertPwActivity"></activity>
+        <activity android:name=".Side_Navigation.Person_info_list.Person_ListActivity" />
+        <activity android:name=".After_Main.Notice_Tap.Notice_ContentActivity" />
+        <activity android:name=".First_View.JoinActivity" />
+        <activity android:name=".After_Main.Find_Store_Tap.PC_Review.Pc_Review_WriteActivity" />
+        <activity android:name=".After_Main.Find_Store_Tap.PC_Info.PC_Reservation.ReservationActivity" />
+        <activity android:name=".After_Main.Find_Store_Tap.PC_Info.Pc_Info_TabActivity" />
+        <activity android:name=".First_View.FirstActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".After_Main.MainActivity"
+            android:label="MyPCapplication"
+            android:theme="@style/AppTheme.NoActionBar" />
+    </application>
+
+</manifest>

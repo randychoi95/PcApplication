@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/text_join"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="170dp"
+        android:text="회원 가입을 하시겠습니까?"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_join_ok"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="확 인"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/text_join"
+        app:layout_constraintTop_toBottomOf="@+id/text_join" />
+
+    <Button
+        android:id="@+id/btn_join_cancel"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:text="취 소"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/btn_join_ok"
+        app:layout_constraintTop_toBottomOf="@+id/text_join" />
+</androidx.constraintlayout.widget.ConstraintLayout>
