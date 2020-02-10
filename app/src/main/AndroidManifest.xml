@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ezen.mission10">
+    package="com.ezen.MyPcApplication">
 
     <application
         android:allowBackup="true"
@@ -12,9 +12,8 @@
         <activity android:name=".First_View.FindPwActivity"></activity>
         <activity android:name=".First_View.FindIdActivity" />
         <activity android:name=".Side_Navigation.Person.ConvertPwActivity" />
-        <activity android:name=".Side_Navigation.Person_info_list.Person_ListActivity" />
         <activity android:name=".After_Main.Notice_Tap.Notice_ContentActivity" />
-        <activity android:name=".First_View.JoinActivity"  android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.ezen.MyPcApplication.First_View.JoinActivity"  android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".After_Main.Find_Store_Tap.PC_Review.Pc_Review_WriteActivity" />
         <activity android:name=".After_Main.Find_Store_Tap.PC_Info.PC_Reservation.ReservationActivity" />
         <activity android:name=".After_Main.Find_Store_Tap.PC_Info.Pc_Info_TabActivity" />
