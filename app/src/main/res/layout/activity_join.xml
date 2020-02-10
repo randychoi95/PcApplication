@@ -1,180 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/joinInfo"
-        android:layout_width="410dp"
-        android:layout_height="50dp"
-        android:background="@color/design_default_color_primary"
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:gravity="center"
-        android:text="회원 가입"
-        android:textColor="@android:color/white"
-        android:textSize="28sp"
+        android:text="Member Join"
+        android:textSize="25dp"
+        android:textColor="#FFFF"
+        android:fontFamily="@font/test"
+        android:background="#A1000000"
+
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/member_name"
-        android:layout_width="230dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="이름 입력"
-        android:inputType="textPersonName"
-        android:textColorHint="@color/design_default_color_primary_dark"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/joinInfo"
-        app:layout_constraintTop_toBottomOf="@+id/joinInfo" />
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="55dp"
+        android:background="#C6000000"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/member_id"
-        android:layout_width="230dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="ID 입력"
-        android:inputType="textPersonName"
-        android:textColorHint="@color/design_default_color_primary_dark"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/member_name"
-        app:layout_constraintTop_toBottomOf="@+id/member_name" />
-
-    <EditText
-        android:id="@+id/member_pw"
-        android:layout_width="230dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="비밀번호 입력"
-        android:inputType="textPersonName"
-        android:textColorHint="@color/design_default_color_primary_dark"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/member_id"
-        app:layout_constraintTop_toBottomOf="@+id/member_id" />
-
-    <EditText
-        android:id="@+id/member_repw"
-        android:layout_width="230dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="비밀번호 재입력"
-        android:inputType="textPersonName"
-        android:textColorHint="@color/design_default_color_primary_dark"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/member_pw"
-        app:layout_constraintTop_toBottomOf="@+id/member_pw" />
-
-    <EditText
-        android:id="@+id/member_birth"
-        android:layout_width="230dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="생년월일 입력"
-        android:inputType="textPersonName"
-        android:textColorHint="@color/design_default_color_primary_dark"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/member_repw"
-        app:layout_constraintTop_toBottomOf="@+id/member_repw" />
-
-    <EditText
-        android:id="@+id/member_phone"
-        android:layout_width="230dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="전화번호 입력"
-        android:inputType="textPersonName"
-        android:textColorHint="@color/design_default_color_primary_dark"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/member_birth"
-        app:layout_constraintTop_toBottomOf="@+id/member_birth" />
-
-    <EditText
-        android:id="@+id/member_email"
-        android:layout_width="230dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="이메일 입력"
-        android:inputType="textPersonName"
-        android:textColorHint="@color/design_default_color_primary_dark"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/member_phone"
-        app:layout_constraintTop_toBottomOf="@+id/member_phone" />
-
-    <Button
-        android:id="@+id/btn_check_id"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:text="중복확인"
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/member_id"
-        app:layout_constraintTop_toBottomOf="@+id/member_name" />
-
-    <TextView
-        android:id="@+id/view_pw_check"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/transparent"
-        android:gravity="center"
-        android:hint="비밀번호 일치(불일치)"
-        android:textColorHint="@color/colorAccent"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/member_repw"
-        app:layout_constraintTop_toBottomOf="@+id/member_pw" />
-
-    <RadioGroup
-        android:id="@+id/rg_gender"
-        android:layout_width="230dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/member_email"
-        app:layout_constraintTop_toBottomOf="@+id/member_email">
-
-        <RadioButton
-            android:id="@+id/rb_man"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/name_input_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
-            android:text="남자" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="5dp"
+            android:hint="Name"
+            android:textColorHint="#A3A2A2"
+            android:theme="@style/joinEdit">
 
-        <RadioButton
-            android:id="@+id/rb_woman"
-            android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/member_name"
+                style="@style/TextAppearance.App.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_person_black_24dp"
+                android:inputType="text"
+                android:textColor="@android:color/white" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/id_input_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="여자" />
-    </RadioGroup>
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:textColorHint="#A3A2A2"
+            android:theme="@style/joinEdit">
 
-    <Button
-        android:id="@+id/btn_join"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="135dp"
-        android:layout_marginLeft="135dp"
-        android:layout_marginTop="24dp"
-        android:text="회원가입"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/rg_gender"
-        app:layout_constraintTop_toBottomOf="@+id/rg_gender" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/member_id"
+                style="@style/TextAppearance.App.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_label_outline_black_24dp"
+                android:hint="ID"
+                android:textColor="@android:color/white" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pw_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColorHint="#A3A2A2"
+                android:theme="@style/joinEdit">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/member_pw"
+                    android:layout_width="match_parent"
+                    android:layout_height="53dp"
+                    android:drawableStart="@drawable/ic_lock_outline_black_24dp"
+                    android:fontFamily="@font/test"
+                    android:hint="PW"
+                    android:textColor="@android:color/white" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/repw_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:textColorHint="#A3A2A2"
+                android:theme="@style/joinEdit">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/member_repw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:hint="PW re"
+                    android:inputType="number|textPassword"
+                    android:textColor="@android:color/white" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/birth_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:textColorHint="#A3A2A2"
+            android:theme="@style/joinEdit">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/member_birth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_cake_black_24dp"
+                android:hint="Birth Day"
+                android:textColor="@android:color/white" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phone_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:textColorHint="#A3A2A2"
+            android:theme="@style/joinEdit">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/member_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_call_black_24dp"
+                android:hint="phone"
+                android:textColor="@android:color/white" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:textColorHint="#A3A2A2"
+            android:theme="@style/joinEdit">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/member_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_mail_black_24dp"
+                android:hint="email"
+                android:textColor="@android:color/white" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RadioGroup
+            android:id="@+id/rg_gender"
+            android:layout_width="230dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_man"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
+                android:buttonTint="#A3A2A2"
+                android:text="Man"
+                android:textColor="@android:color/white" />
+
+            <RadioButton
+                android:id="@+id/rb_woman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="#A3A2A2"
+                android:text="Woman"
+                android:textColor="@android:color/white" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btn_join"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/btn_background"
+            android:fontFamily="@font/test"
+            android:text="Join"
+            android:textSize="24sp" />
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

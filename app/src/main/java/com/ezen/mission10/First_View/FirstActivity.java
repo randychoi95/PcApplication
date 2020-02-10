@@ -55,7 +55,7 @@ public class FirstActivity extends AppCompatActivity {
         // 비밀번호 보이기/안보이기
         pw_text_input.setPasswordVisibilityToggleEnabled(true);
 
-        
+
         Button btn_login = findViewById(R.id.btn_login);
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
