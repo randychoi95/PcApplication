@@ -6,4 +6,6 @@
 
     <!-- TextInputLayout Color   -->
     <color name="colorKeyBrown">#FCFCFC</color>
+
+    <color name="color"> #FFFF</color>
 </resources>

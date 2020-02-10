@@ -1,10 +1,10 @@
-package com.ezen.MyPcApplication.First_View;
+package com.ezen.mission10.First_View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.ezen.MyPcApplication.R;
+import com.ezen.mission10.R;
 
 public class JoinActivity extends AppCompatActivity {
 

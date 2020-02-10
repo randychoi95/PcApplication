@@ -20,16 +20,28 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <!-- TextInputLayout Style   -->
+    <!-- TextInputLayout 테두리 색상   -->
     <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/colorKeyBrown</item>
     </style>
 
-    <!-- button Style  -->
+    <!-- 버튼 폰트,색상 -->
     <style name="ButtonTheme" parent="android:Widget.Button">
         <item name="android:fontFamily">@font/test</item>
         <item name="android:textColor">@color/colorKeyBrown</item>
     </style>
 
+    <!-- 회원가입 EditText   -->
+    <style name = "joinEdit" parent = "Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">#FFFFFF</item>
+        <item name="android:fontFamily">@font/test</item>
+        <item name="colorControlNormal">#A3A2A2</item>
+    </style>
+
+    <!-- 회원가입 EditText   -->
+    <style name = "test" >
+        <item name="colorAccent">#FFFFFF</item>
+        <item name="colorControlNormal">#A3A2A2</item>
+    </style>
 
 </resources>
