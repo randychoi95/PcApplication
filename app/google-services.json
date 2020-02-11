@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "368192894417",
-    "firebase_url": "https://mypcapplication-290b5.firebaseio.com",
-    "project_id": "mypcapplication-290b5",
-    "storage_bucket": "mypcapplication-290b5.appspot.com"
+    "project_number": "1085205195908",
+    "firebase_url": "https://mypcapplication-a9ab0.firebaseio.com",
+    "project_id": "mypcapplication-a9ab0",
+    "storage_bucket": "mypcapplication-a9ab0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:368192894417:android:9ffe00293c83473088dcf0",
+        "mobilesdk_app_id": "1:1085205195908:android:8c907bfca39fa91e6926d1",
         "android_client_info": {
           "package_name": "com.ezen.MyPcApplication"
         }
       },
       "oauth_client": [
         {
-          "client_id": "368192894417-4c8vrsnev2ecpsaqjnbfl5nv6febfjas.apps.googleusercontent.com",
+          "client_id": "1085205195908-vlgji5sj29h2educaf2lje71lgcd99md.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCrXQ1aejVURyqwpu8gKHDjYPN77dY5Uss"
+          "current_key": "AIzaSyAkbrK5jLHn4cr4NLNBssL4DvWsqjTZ79o"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "368192894417-4c8vrsnev2ecpsaqjnbfl5nv6febfjas.apps.googleusercontent.com",
+              "client_id": "1085205195908-vlgji5sj29h2educaf2lje71lgcd99md.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
