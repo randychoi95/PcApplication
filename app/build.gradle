@@ -5,8 +5,9 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.ezen.MyPcApplication"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 29
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -59,4 +60,12 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.github.pedroSG94:AutoPermissions:1.0.3'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
+
+    // 파이어베이스
+    implementation 'com.google.firebase:firebase-auth:19.1.0'
+    implementation 'com.google.firebase:firebase-firestore:21.2.1'
+    implementation 'com.google.firebase:firebase-storage:19.1.0'
+    
+    // 멀티덱스
+    implementation 'com.android.support:multidex:1.0.3'
 }
