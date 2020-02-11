@@ -2,6 +2,7 @@ package com.ezen.MyPcApplication.After_Main.Find_Store_Tap;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +10,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ezen.MyPcApplication.After_Main.MainActivity;
 import com.ezen.MyPcApplication.R;
 
 
@@ -54,4 +57,6 @@ public class StoreFragment extends Fragment implements StoreAdapter.setClickList
     public void setClick(Intent intent) {
         startActivity(intent);
     }
+
+
 }

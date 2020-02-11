@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".First_View.FindPwActivity"></activity>
-        <activity android:name=".First_View.FindIdActivity" />
+        <activity android:name=".First_View.FindPwActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".First_View.FindIdActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Side_Navigation.Person.ConvertPwActivity" />
         <activity android:name=".After_Main.Notice_Tap.Notice_ContentActivity" />
         <activity android:name="com.ezen.MyPcApplication.First_View.JoinActivity"  android:theme="@style/AppTheme.NoActionBar"/>

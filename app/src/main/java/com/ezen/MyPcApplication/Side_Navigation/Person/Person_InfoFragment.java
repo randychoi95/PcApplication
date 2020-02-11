@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.ezen.MyPcApplication.R;
 
@@ -19,6 +22,9 @@ public class Person_InfoFragment extends Fragment implements PersonInfoAdapter.s
 
     RecyclerView list_info;
     PersonInfoAdapter personInfoAdapter;
+    EditText editID;
+    EditText editPhone;
+    EditText editEmail;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -29,6 +35,19 @@ public class Person_InfoFragment extends Fragment implements PersonInfoAdapter.s
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_person_info, container, false);
+
+        editID = rootView.findViewById(R.id.editID);
+        editPhone = rootView.findViewById(R.id.editPhone);
+        editEmail = rootView.findViewById(R.id.editEmail);
+
+
+        Button btn_convert = rootView.findViewById(R.id.btn_convert);
+        btn_convert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setConvert();
+            }
+        });
 
         list_info = rootView.findViewById(R.id.list_info);
 
@@ -50,6 +69,16 @@ public class Person_InfoFragment extends Fragment implements PersonInfoAdapter.s
     @Override
     public void setClick(Intent intent) {
         startActivity(intent);
+    }
+
+    public void setConvert() {
+        String edit_ID = editID.getText().toString();
+        String edit_Phone = editPhone.getText().toString();
+        String edit_Email = editEmail.getText().toString();
+        String result = "아이디 : " + edit_ID + "\n핸드폰 : " + edit_Phone + "\n이메일 : " + edit_Email;
+
+        Toast.makeText(getContext(), result, Toast.LENGTH_SHORT ).show();
+
     }
 
 }

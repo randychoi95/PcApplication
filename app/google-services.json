@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "368192894417",
+    "firebase_url": "https://mypcapplication-290b5.firebaseio.com",
+    "project_id": "mypcapplication-290b5",
+    "storage_bucket": "mypcapplication-290b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:368192894417:android:9ffe00293c83473088dcf0",
+        "android_client_info": {
+          "package_name": "com.ezen.MyPcApplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "368192894417-4c8vrsnev2ecpsaqjnbfl5nv6febfjas.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrXQ1aejVURyqwpu8gKHDjYPN77dY5Uss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "368192894417-4c8vrsnev2ecpsaqjnbfl5nv6febfjas.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

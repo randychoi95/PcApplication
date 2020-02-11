@@ -38,7 +38,7 @@ public class Home_Pager_Adapter extends PagerAdapter {
         //초기화
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(R.layout.pc_event, container, false);
-        ImageView imageView = v.findViewById(R.id.imageView);
+        ImageView imageView = v.findViewById(R.id.imageViewEvent);
         imageView.setImageResource(images[position]);
         container.addView(v);
         return v;

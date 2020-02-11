@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/find_pw_info2"
+        android:id="@+id/find_pw_info3"
         android:layout_width="410dp"
         android:layout_height="50dp"
         android:background="@color/design_default_color_primary_dark"
@@ -28,7 +28,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/find_pw_info2" />
+        app:layout_constraintTop_toBottomOf="@+id/find_pw_info3" />
 
     <Button
         android:id="@+id/btn_ok"
