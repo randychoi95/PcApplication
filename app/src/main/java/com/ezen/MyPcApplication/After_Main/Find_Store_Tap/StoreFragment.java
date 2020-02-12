@@ -67,8 +67,8 @@ public class StoreFragment extends Fragment implements StoreAdapter.setClickList
                     List<StoreItem> PcList = task.getResult().toObjects(StoreItem.class);
                     for( StoreItem pcItem : PcList ){
                         storeAdapter.addItem(pcItem);
+                        Log.e("test1", "이름 : " + pcItem.getName());
                     }
-
                     list_pc.setAdapter(storeAdapter);
                 } else {
                     // 리스트 가져오기 실패
@@ -76,10 +76,6 @@ public class StoreFragment extends Fragment implements StoreAdapter.setClickList
                 }
             }
         });
-
-
-
-
         return rootView;
     }
 
@@ -87,4 +83,5 @@ public class StoreFragment extends Fragment implements StoreAdapter.setClickList
     public void setClick(Intent intent) {
         startActivity(intent);
     }
+
 }

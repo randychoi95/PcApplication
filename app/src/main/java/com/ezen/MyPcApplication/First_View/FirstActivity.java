@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.ezen.MyPcApplication.After_Main.MainActivity;
 import com.ezen.MyPcApplication.R;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class FirstActivity extends AppCompatActivity {
 
@@ -22,10 +24,21 @@ public class FirstActivity extends AppCompatActivity {
     EditText id_edit_input;
     EditText pw_edit_input;
 
+    FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        if(firebaseAuth.getCurrentUser() != null) {
+            // 이미 로그인 되었다면 이 액티비티를 종료
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+            Log.e("test", firebaseAuth.getCurrentUser().getEmail());
+        }
 
         // PW TextInputLayout
         id_text_input = findViewById(R.id.id_text_input);
