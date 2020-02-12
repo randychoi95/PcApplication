@@ -40,7 +40,7 @@ public class StoreFragment extends Fragment implements StoreAdapter.setClickList
 
     EditText editText;
 
-    ArrayList<StoreItem> search_list;
+    ArrayList<StoreItem> search_list = new ArrayList<StoreItem>();
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -89,6 +89,23 @@ public class StoreFragment extends Fragment implements StoreAdapter.setClickList
         });
 
         editText = rootView.findViewById(R.id.edit_search);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(editText.length() == 0)
+                    list_pc.setAdapter(storeAdapter);
+            }
+        });
 
         Button btn_search = rootView.findViewById(R.id.btn_search);
         btn_search.setOnClickListener(new View.OnClickListener() {
@@ -110,13 +127,39 @@ public class StoreFragment extends Fragment implements StoreAdapter.setClickList
 
     // 검색 기능
     public void doSearch(final String text) {
+
         if (text.length() == 0) {
             Toast.makeText(getContext(), "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show();
         }
 
-        storeAdapter.celarList();
 
+        db.collection("PcRoom")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
 
+                            storeAdapter.items.clear();
+                            // 리스트 가져오기 성공
+                            List<StoreItem> PcList = task.getResult().toObjects(StoreItem.class);
+                            for( StoreItem pcItem : PcList ){
+                                if (pcItem.getName().contains(text) ||
+                                    pcItem.getAddress().contains(text)) {
+                                    storeAdapter.addItem(pcItem);
+                                }
+                            }
+                            // 정렬된 리스트 가져오기
+                            storeAdapter.sort();
+                        } else {
+                            // 리스트 가져오기 실패
+                            Log.e("Activity", "리스트 가져오기 실패");
+                        }
+
+                        list_pc.setAdapter(storeAdapter);
+                    }
+
+                });
     }
 
 }

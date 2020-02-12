@@ -73,10 +73,6 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         items.add((item));
     }
 
-    public void celarList(){
-        items.clear();
-    }
-
     // 리스트 거리순으로 정렬
     public void sort(){
         Comparator<StoreItem> cmpAsc = new Comparator<StoreItem>() {
@@ -131,7 +127,6 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
             locationDes.setLongitude(Double.parseDouble(item.getLongitude())); // 경도
 
             double distance = locationMy.distanceTo(locationDes);
-            Log.e("test2", "이름 : " + item.getName());
 
             pc_name.setText(item.getName());
             pc_street.setText(Double.toString(Math.round(distance) / 1000.0) + "km");
