@@ -57,10 +57,11 @@
                         android:id="@+id/pc_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:fontFamily="@font/nanumgothic_bold"
                         android:text="Ezen 피시방"
                         android:textColor="#FFFFFF"
-                        android:textSize="30sp" />
+                        android:textSize="24sp" />
 
                     <Button
                         android:id="@+id/btn_favorite"
@@ -80,7 +81,7 @@
                     android:fontFamily="@font/jua_regular"
                     android:text="pc방 주소"
                     android:textColor="@android:color/background_light"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 

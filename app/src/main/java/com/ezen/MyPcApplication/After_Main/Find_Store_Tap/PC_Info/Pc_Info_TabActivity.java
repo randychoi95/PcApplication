@@ -3,7 +3,9 @@ package com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -15,6 +17,8 @@ import com.ezen.MyPcApplication.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Pc_Info_TabActivity extends AppCompatActivity {
 
@@ -38,6 +42,16 @@ public class Pc_Info_TabActivity extends AppCompatActivity {
         tabs.addTab(tabs.newTab().setText("PC방 정보"));
         tabs.addTab(tabs.newTab().setText("리뷰"));
 
+        // 리스트에서 데이터 받기
+        Intent intent = getIntent();
+        String name = intent.getExtras().getString("name");
+        String address = intent.getExtras().getString("address");
+        // 프레그먼트에 데이터 보내주기
+        Bundle bundle = new Bundle();
+        bundle.putString("name", name);
+        bundle.putString("address", address);
+        pc_info_tab.setArguments(bundle);
+
         getSupportFragmentManager().beginTransaction().replace(R.id.container, pc_info_tab).commit();
 
 
@@ -46,6 +60,7 @@ public class Pc_Info_TabActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 if(tab.getPosition() == 0){
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, pc_info_tab).commit();
+
                 } else if(tab.getPosition() == 1){
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, pc_review_tabFragment).commit();
                 }

@@ -1,5 +1,7 @@
 package com.ezen.MyPcApplication.After_Main.Find_Store_Tap;
 
+import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.util.Log;
@@ -7,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +20,7 @@ import com.ezen.MyPcApplication.R;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 // 제네릭으로 타입을 추가함.
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> {
@@ -24,6 +28,8 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
     setClickListener listener;
 
     ArrayList<StoreItem> items = new ArrayList<StoreItem>();
+    ArrayList<StoreItem> searchs = new ArrayList<StoreItem>();
+
     View itemView;
 
     StoreAdapter(setClickListener listener) {
@@ -49,6 +55,9 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(itemView.getContext(), Pc_Info_TabActivity.class);
+                // Pc_Info_TabActivity에 데이터 보내주기
+                intent.putExtra("name", items.get(position).getName());
+                intent.putExtra("address", items.get(position).getAddress());
                 listener.setClick(intent);
             }
         });
@@ -64,6 +73,11 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         items.add((item));
     }
 
+    public void celarList(){
+        items.clear();
+    }
+
+    // 리스트 거리순으로 정렬
     public void sort(){
         Comparator<StoreItem> cmpAsc = new Comparator<StoreItem>() {
             @Override

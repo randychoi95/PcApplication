@@ -4,10 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -32,7 +37,10 @@ public class StoreFragment extends Fragment implements StoreAdapter.setClickList
 
     FirebaseFirestore db;
     FirebaseAuth auth;
-    String email;
+
+    EditText editText;
+
+    ArrayList<StoreItem> search_list;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -44,7 +52,7 @@ public class StoreFragment extends Fragment implements StoreAdapter.setClickList
                              Bundle savedInstanceState) {
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-//        email = auth.getCurrentUser().getEmail();
+
         // LayoutInflator 클래스 : XML 뷰파일을 실제 뷰객체로 만들어 주는 시스템 함수
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_store, container, false);
 
@@ -67,8 +75,8 @@ public class StoreFragment extends Fragment implements StoreAdapter.setClickList
                     List<StoreItem> PcList = task.getResult().toObjects(StoreItem.class);
                     for( StoreItem pcItem : PcList ){
                         storeAdapter.addItem(pcItem);
-                        Log.e("test1", "이름 : " + pcItem.getName());
                     }
+                    // 정렬된 리스트 가져오기
                     storeAdapter.sort();
                 } else {
                     // 리스트 가져오기 실패
@@ -80,6 +88,17 @@ public class StoreFragment extends Fragment implements StoreAdapter.setClickList
 
         });
 
+        editText = rootView.findViewById(R.id.edit_search);
+
+        Button btn_search = rootView.findViewById(R.id.btn_search);
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = editText.getText().toString();
+                doSearch(text);
+            }
+        });
+
 
         return rootView;
     }
@@ -87,6 +106,17 @@ public class StoreFragment extends Fragment implements StoreAdapter.setClickList
     @Override
     public void setClick(Intent intent) {
         startActivity(intent);
+    }
+
+    // 검색 기능
+    public void doSearch(final String text) {
+        if (text.length() == 0) {
+            Toast.makeText(getContext(), "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show();
+        }
+
+        storeAdapter.celarList();
+
+
     }
 
 }

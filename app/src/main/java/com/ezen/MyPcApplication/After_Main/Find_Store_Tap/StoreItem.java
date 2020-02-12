@@ -1,8 +1,5 @@
 package com.ezen.MyPcApplication.After_Main.Find_Store_Tap;
 
-import java.util.HashMap;
-import java.util.Map;
-
 // MVC 중 M(Model, Data)
 public class StoreItem {
     String name; // 피시방 이름
