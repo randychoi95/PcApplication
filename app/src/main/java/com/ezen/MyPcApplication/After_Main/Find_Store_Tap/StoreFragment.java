@@ -69,13 +69,18 @@ public class StoreFragment extends Fragment implements StoreAdapter.setClickList
                         storeAdapter.addItem(pcItem);
                         Log.e("test1", "이름 : " + pcItem.getName());
                     }
-                    list_pc.setAdapter(storeAdapter);
+                    storeAdapter.sort();
                 } else {
                     // 리스트 가져오기 실패
                     Log.e("Activity", "리스트 가져오기 실패");
                 }
+
+                list_pc.setAdapter(storeAdapter);
             }
+
         });
+
+
         return rootView;
     }
 

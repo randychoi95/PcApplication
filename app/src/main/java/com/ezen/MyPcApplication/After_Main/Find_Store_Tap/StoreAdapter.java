@@ -44,6 +44,27 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         StoreItem item = items.get(position);
         holder.setItem(item);
 
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(itemView.getContext(), Pc_Info_TabActivity.class);
+                listener.setClick(intent);
+            }
+        });
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return items.size();
+    }
+
+    public void addItem(StoreItem item) {
+        items.add((item));
+    }
+
+    public void sort(){
         Comparator<StoreItem> cmpAsc = new Comparator<StoreItem>() {
             @Override
             public int compare(StoreItem item1, StoreItem item2) {
@@ -71,23 +92,6 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
             }
         } ;
         Collections.sort(items, cmpAsc);
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(itemView.getContext(), Pc_Info_TabActivity.class);
-                listener.setClick(intent);
-            }
-        });
-    }
-
-    @Override
-    public int getItemCount() {
-        return items.size();
-    }
-
-    public void addItem(StoreItem item) {
-        items.add((item));
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

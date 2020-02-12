@@ -3,7 +3,6 @@ package com.ezen.MyPcApplication.First_View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +18,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class FirstActivity extends AppCompatActivity {
 
@@ -37,6 +35,12 @@ public class FirstActivity extends AppCompatActivity {
         setContentView(R.layout.activity_first);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        if(firebaseAuth.getCurrentUser() != null){
+            //이미 로그인 되었다면 이 액티비티를 종료함
+            finish();
+            //그리고 profile 액티비티를 연다.
+            startActivity(new Intent(getApplicationContext(), MainActivity.class)); //추가해 줄 ProfileActivity
+        }
 
         // PW TextInputLayout
         id_text_input = findViewById(R.id.id_text_input);
