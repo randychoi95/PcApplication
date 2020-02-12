@@ -1,6 +1,8 @@
 package com.ezen.MyPcApplication.After_Main.Find_Store_Tap;
 
 import android.content.Intent;
+import android.location.Location;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,8 +74,19 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         }
 
         public void setItem(StoreItem item){
+            Location locationMy = new Location("locationMy");
+            locationMy.setLatitude(37.655878); // 위도
+            locationMy.setLongitude(127.062434); // 경도
+
+            Location locationDes = new Location("locationMy");
+            locationDes.setLatitude(Double.parseDouble(item.getLatitude())); // 위도
+            locationDes.setLongitude(Double.parseDouble(item.getLongitude())); // 경도
+
+            double distance = locationMy.distanceTo(locationDes);
+            Log.e("test", "거리 : " + distance);
+
             pc_name.setText(item.getName());
-            pc_street.setText(item.getStreet());
+            pc_street.setText(Double.toString(Math.round(distance) / 1000.0) + "km");
             pc_address.setText(item.getAddress());
         }
     }

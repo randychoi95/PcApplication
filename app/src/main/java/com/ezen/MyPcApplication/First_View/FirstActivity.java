@@ -1,59 +1,52 @@
 package com.ezen.MyPcApplication.First_View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ezen.MyPcApplication.After_Main.MainActivity;
 import com.ezen.MyPcApplication.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class FirstActivity extends AppCompatActivity {
 
     TextInputLayout id_text_input;
     TextInputLayout pw_text_input;
 
+    EditText id_edit_input;
+    EditText pw_edit_input;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
 
-        // ID TextInputLayout
+        // PW TextInputLayout
         id_text_input = findViewById(R.id.id_text_input);
-        EditText id_edit_text = id_text_input.getEditText();
-        id_edit_text.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (s.toString().contains("#")) {
-                    id_text_input.setError("특수 문자는 사용할 수 없습니다.");
-                } else {
-                    id_text_input.setError(null); // null은 에러 메시지를 지워주는 기능
-                }
-            }
-        });
+        // TextInputEditText
+        id_edit_input = id_text_input.getEditText();
 
         // PW TextInputLayout
         pw_text_input = findViewById(R.id.pw_text_input);
         // 비밀번호 보이기/안보이기
         pw_text_input.setPasswordVisibilityToggleEnabled(true);
-
+        // TextInputEditText
+        pw_edit_input = pw_text_input.getEditText();
 
         Button btn_login = findViewById(R.id.btn_login);
         btn_login.setOnClickListener(new View.OnClickListener() {
@@ -92,4 +85,5 @@ public class FirstActivity extends AppCompatActivity {
         });
 
     }
+
 }

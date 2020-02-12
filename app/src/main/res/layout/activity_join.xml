@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/find_pw_info2"
+        android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
@@ -34,28 +34,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/name_input_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="5dp"
-            android:hint="Name"
-            android:textColorHint="#A3A2A2"
-            android:theme="@style/joinEdit">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/find_edit_name2"
-                style="@style/TextAppearance.App.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_person_black_24dp"
-                android:inputType="text"
-                android:textColor="@android:color/white" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/id_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_label_outline_black_24dp"
-                android:hint="ID"
+                android:hint="Input Email"
                 android:textColor="@android:color/white" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -125,92 +103,10 @@
 
         </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/birth_input_layout"
+        <TextView
+            android:id="@+id/pw_check"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:textColorHint="#A3A2A2"
-            android:theme="@style/joinEdit">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/member_birth"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_cake_black_24dp"
-                android:hint="Birth Day"
-                android:textColor="@android:color/white" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phone_input_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:textColorHint="#A3A2A2"
-            android:theme="@style/joinEdit">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/find_edit_phone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_call_black_24dp"
-                android:hint="phone"
-                android:textColor="@android:color/white" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/email_input_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:textColorHint="#A3A2A2"
-            android:theme="@style/joinEdit">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/member_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_mail_black_24dp"
-                android:hint="email"
-                android:textColor="@android:color/white" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <RadioGroup
-            android:id="@+id/rg_gender"
-            android:layout_width="230dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/rb_man"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="40dp"
-                android:buttonTint="#A3A2A2"
-                android:text="Man"
-                android:textColor="@android:color/white" />
-
-            <RadioButton
-                android:id="@+id/rb_woman"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="#A3A2A2"
-                android:text="Woman"
-                android:textColor="@android:color/white" />
-        </RadioGroup>
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/btn_join"
@@ -224,6 +120,8 @@
             android:fontFamily="@font/test"
             android:text="Join"
             android:textSize="24sp" />
+
+
 
     </LinearLayout>
 

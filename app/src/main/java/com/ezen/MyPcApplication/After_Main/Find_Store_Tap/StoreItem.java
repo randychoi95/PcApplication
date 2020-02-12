@@ -1,14 +1,22 @@
 package com.ezen.MyPcApplication.After_Main.Find_Store_Tap;
 
+import java.util.HashMap;
+import java.util.Map;
+
 // MVC 중 M(Model, Data)
 public class StoreItem {
-    private String name;
-    private String street;
-    private String address;
+    String name; // 피시방 이름
+    String latitude; // 피시방 위도
+    String longitude; // 피시방 경도
+    String address; // 피시방 주소
 
-    public StoreItem(String name, String street, String address) {
+    public StoreItem() {
+    }
+
+    public StoreItem(String name, String latitude, String longitude, String address) {
         this.name = name;
-        this.street = street;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.address = address;
     }
 
@@ -16,8 +24,12 @@ public class StoreItem {
         return name;
     }
 
-    public String getStreet() {
-        return street;
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
     }
 
     public String getAddress() {
@@ -28,8 +40,12 @@ public class StoreItem {
         this.name = name;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     public void setAddress(String address) {
