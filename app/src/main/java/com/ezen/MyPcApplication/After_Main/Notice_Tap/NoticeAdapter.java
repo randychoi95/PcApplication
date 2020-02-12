@@ -43,6 +43,8 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(itemView.getContext(), Notice_ContentActivity.class);
+                intent.putExtra("title", items.get( position ).getTitle());
+                intent.putExtra("content", items.get( position ).getContent());
                 listener.setClick(intent);
             }
         });
@@ -58,17 +60,17 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView text_title;
+        TextView notice_title;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            text_title = itemView.findViewById(R.id.text_title);
+            notice_title = itemView.findViewById(R.id.text_title);
         }
 
         public void setItem(Noticeitem item){
 
-            text_title.setText(item.getTitle());
+            notice_title.setText(item.getTitle());
         }
     }
 
