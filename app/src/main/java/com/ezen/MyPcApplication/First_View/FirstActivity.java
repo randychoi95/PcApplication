@@ -1,7 +1,9 @@
 package com.ezen.MyPcApplication.First_View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +14,12 @@ import android.widget.Toast;
 
 import com.ezen.MyPcApplication.After_Main.MainActivity;
 import com.ezen.MyPcApplication.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class FirstActivity extends AppCompatActivity {
 
@@ -22,10 +29,14 @@ public class FirstActivity extends AppCompatActivity {
     EditText id_edit_input;
     EditText pw_edit_input;
 
+    FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         // PW TextInputLayout
         id_text_input = findViewById(R.id.id_text_input);
@@ -43,8 +54,9 @@ public class FirstActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                startActivity(intent);
+                doLogin();
             }
         });
 
@@ -74,7 +86,53 @@ public class FirstActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }//End onCreate
 
-    }
+    private void doLogin(){
 
-}
+        EditText id_edit_text = findViewById(R.id.id_edit_text);
+        EditText pw_edit_text = findViewById(R.id.pw_edit_text);
+
+        //예외처리
+        if( id_edit_text == null || id_edit_text.getText().toString().length() < 1) {
+            Toast.makeText(this, "아이디를 입력하세요", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if( pw_edit_text == null || pw_edit_text.getText().toString().length() < 1) {
+            Toast.makeText(this, "비밀번호를 입력하세요", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        String email = id_edit_text.getText().toString();
+        String password = pw_edit_text.getText().toString();
+
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if( task.isSuccessful() ){
+                            //로그인 성공함
+                            Toast.makeText(FirstActivity.this,
+                                    "로그인 성공했습니다.",
+                                    Toast.LENGTH_SHORT).show();
+
+                            finish();
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+
+                        }else{
+                            //로그인 실패함
+                            Toast.makeText(FirstActivity.this,
+                                    "이메일 또는 암호가 맞지 않거나 회원가입을 하세요.",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }//doLoin
+
+
+
+
+
+
+}//class

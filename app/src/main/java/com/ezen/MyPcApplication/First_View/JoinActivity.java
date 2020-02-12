@@ -124,7 +124,7 @@ public class JoinActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "회원가입이 되었습니다.", Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
-                            Toast.makeText(getApplicationContext(), "6자리미만, 이미 등록된 아이디, 통신 오류를 확인 하세요.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "6자리미만,이메일 형식이 아니거나, 이미 등록된 아이디, 통신 오류를 확인 하세요.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
