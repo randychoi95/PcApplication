@@ -1,24 +1,28 @@
 package com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AlertDialog;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.PC_Member.PcRoomLoginActivity;
 import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.StoreItem;
+import com.ezen.MyPcApplication.After_Main.MainActivity;
+import com.ezen.MyPcApplication.First_View.FirstActivity;
 import com.ezen.MyPcApplication.R;
-import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.PC_Reservation.ReservationActivity;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Pc_Info_TabFragment extends Fragment {
     String name;
@@ -71,13 +75,10 @@ public class Pc_Info_TabFragment extends Fragment {
         btn_reservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ReservationActivity.class);
+                Intent intent = new Intent(getContext(), PcRoomLoginActivity.class);
                 startActivity(intent);
             }
         });
-
-
-
         return rootView;
     }
 
@@ -86,4 +87,5 @@ public class Pc_Info_TabFragment extends Fragment {
         super.onAttach(context);
 
     }
+
 }

@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".After_Main.Find_Store_Tap.PC_Info.PC_Member.PcRoomJoinActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
-        android:text="Member Join"
+        android:text="PC방 회원가입"
         android:textSize="25dp"
         android:textColor="#FFFF"
         android:fontFamily="@font/test"
@@ -34,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_input_layout"
+            android:id="@+id/pcroom_userName_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -44,14 +45,33 @@
             android:theme="@style/joinEdit">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/member_id"
+                android:id="@+id/pcroom_userName"
+                style="@style/TextAppearance.App.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_person_black_24dp"
+                android:hint="name"
+                android:textColor="@android:color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pcroom_userId_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:textColorHint="#A3A2A2"
+            android:theme="@style/joinEdit">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pcroom_userId"
                 style="@style/TextAppearance.App.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_label_outline_black_24dp"
-                android:hint="Input Email"
+                android:hint="ID"
                 android:textColor="@android:color/white" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
@@ -63,7 +83,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/pw_input_layout"
+                android:id="@+id/pcroom_userPw_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -71,7 +91,7 @@
                 android:theme="@style/joinEdit">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/member_pw"
+                    android:id="@+id/pcroom_userPw"
                     android:layout_width="match_parent"
                     android:layout_height="53dp"
                     android:drawableStart="@drawable/ic_lock_outline_black_24dp"
@@ -83,7 +103,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/repw_input_layout"
+                android:id="@+id/pcroom_userRepw_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
@@ -92,7 +112,7 @@
                 android:theme="@style/joinEdit">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/member_repw"
+                    android:id="@+id/pcroom_userRepw"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -110,22 +130,74 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp" />
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pcroom_userBirth_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:textColorHint="#A3A2A2"
+            android:theme="@style/joinEdit">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pcroom_userBirth"
+                style="@style/TextAppearance.App.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_cake_black_24dp"
+                android:hint="생년월일 예)20000101"
+                android:inputType="date"
+                android:maxLength="8"
+                android:textColor="@android:color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/birth_check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pcroom_userPhone_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:textColorHint="#A3A2A2"
+            android:theme="@style/joinEdit">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pcroom_userPhone"
+                style="@style/TextAppearance.App.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_call_black_24dp"
+                android:hint="-제외하고 입력해주세요."
+                android:inputType="phone"
+                android:maxLength="13"
+                android:textColor="@android:color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/phone_check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp" />
         <Button
-            android:id="@+id/btn_join"
+            android:id="@+id/btn_Pcjoin"
+            android:background="@drawable/btn_background"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
             android:layout_marginRight="10dp"
-            android:background="@drawable/btn_background"
             android:fontFamily="@font/test"
             android:text="Join"
-            android:textSize="24sp" />
-
+            android:textSize="24sp"/>
 
 
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,14 +1,17 @@
 package com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.PC_Member.PcRoomLoginActivity;
 import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Review.Pc_Review_TabFragment;
 import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.StoreFragment;
 import com.ezen.MyPcApplication.After_Main.Home_Tap.HomeFragment;
