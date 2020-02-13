@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,7 @@ import com.ezen.MyPcApplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -36,6 +38,9 @@ public class JoinActivity extends AppCompatActivity {
 
     TextView pw_check;
 
+    String email;
+    String password;
+
 //    ProgressDialog progressDialog;
 
     @Override
@@ -44,12 +49,6 @@ public class JoinActivity extends AppCompatActivity {
         setContentView(R.layout.activity_join);
 
         firebaseAuth = FirebaseAuth.getInstance();
-
-//        if(firebaseAuth.getCurrentUser() != null) {
-//            // 이미 로그인 되었다면 이 액티비티를 종료
-//            finish();
-//            startActivity(new Intent(this, MainActivity.class));
-//        }
 
         id_input_layout = findViewById(R.id.id_input_layout);
         member_id = id_input_layout.getEditText();
@@ -97,8 +96,8 @@ public class JoinActivity extends AppCompatActivity {
     }
 
     public void doJoin(){
-        String email = member_id.getText().toString().trim();
-        String password = member_pw.getText().toString().trim();
+        email = member_id.getText().toString().trim();
+        password = member_pw.getText().toString().trim();
 
         pw_check = findViewById(R.id.pw_check);
 
@@ -116,8 +115,6 @@ public class JoinActivity extends AppCompatActivity {
 //        progressDialog.setMessage("등록중입니다.");
 //        progressDialog.show();
 
-
-
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -131,5 +128,4 @@ public class JoinActivity extends AppCompatActivity {
                     }
                 });
     }
-
 }

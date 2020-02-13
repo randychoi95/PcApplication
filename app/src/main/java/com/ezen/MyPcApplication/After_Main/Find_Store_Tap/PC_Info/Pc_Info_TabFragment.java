@@ -4,10 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,22 +15,31 @@ import android.widget.TextView;
 import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.StoreItem;
 import com.ezen.MyPcApplication.R;
 import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.PC_Reservation.ReservationActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pc_Info_TabFragment extends Fragment {
     String name;
     String address;
+    String cpu;
+    String ram;
+    String vga;
+
+    FirebaseFirestore db;
+
+    StoreItem storeItem;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_pc_info_tab, container, false);
+        final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_pc_info_tab, container, false);
+
+        db = FirebaseFirestore.getInstance();
+
+        storeItem = new StoreItem();
 
         // 액티비티에서 데이터 받기
         Bundle extra = this.getArguments();
@@ -40,6 +47,9 @@ public class Pc_Info_TabFragment extends Fragment {
             extra = getArguments();
             name = extra.getString("name");
             address = extra.getString("address");
+            cpu = extra.getString("cpu");
+            ram = extra.getString("ram");
+            vga = extra.getString("vga");
         }
 
         TextView pc_name = rootView.findViewById(R.id.pc_name);
@@ -47,6 +57,15 @@ public class Pc_Info_TabFragment extends Fragment {
 
         TextView pc_address = rootView.findViewById(R.id.pc_address);
         pc_address.setText(address);
+
+        TextView pc_cpu_info = rootView.findViewById(R.id.pc_cpu_info);
+        pc_cpu_info.setText(cpu);
+
+        TextView pc_ram_info = rootView.findViewById(R.id.pc_ram_info);
+        pc_ram_info.setText(ram);
+
+        TextView pc_vga_info = rootView.findViewById(R.id.pc_vga_info);
+        pc_vga_info.setText(vga);
 
         Button btn_reservation = rootView.findViewById(R.id.btn_reservation);
         btn_reservation.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +75,8 @@ public class Pc_Info_TabFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+
 
         return rootView;
     }

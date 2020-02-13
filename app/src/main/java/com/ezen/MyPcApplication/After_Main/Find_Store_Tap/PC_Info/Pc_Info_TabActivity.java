@@ -46,10 +46,16 @@ public class Pc_Info_TabActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String name = intent.getExtras().getString("name");
         String address = intent.getExtras().getString("address");
+        String cpu = intent.getExtras().getString("cpu");
+        String ram = intent.getExtras().getString("ram");
+        String vga = intent.getExtras().getString("vga");
         // 프레그먼트에 데이터 보내주기
         Bundle bundle = new Bundle();
         bundle.putString("name", name);
         bundle.putString("address", address);
+        bundle.putString("cpu", cpu);
+        bundle.putString("ram", ram);
+        bundle.putString("vga", vga);
         pc_info_tab.setArguments(bundle);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container, pc_info_tab).commit();

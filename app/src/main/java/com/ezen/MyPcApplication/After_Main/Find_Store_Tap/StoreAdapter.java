@@ -57,6 +57,9 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
                 // Pc_Info_TabActivity에 데이터 보내주기
                 intent.putExtra("name", items.get(position).getName());
                 intent.putExtra("address", items.get(position).getAddress());
+                intent.putExtra("cpu", items.get(position).getCpu());
+                intent.putExtra("ram", items.get(position).getRam());
+                intent.putExtra("vga", items.get(position).getVga());
                 listener.setClick(intent);
             }
         });

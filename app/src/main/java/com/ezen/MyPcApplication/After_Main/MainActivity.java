@@ -2,7 +2,9 @@ package com.ezen.MyPcApplication.After_Main;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +33,8 @@ import com.ezen.MyPcApplication.Side_Navigation.Reservation.Reservation_CheckFra
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FragmentCallback {
@@ -196,5 +200,4 @@ public class MainActivity extends AppCompatActivity
             .setCancelable(false)//백버튼으로 팝업창이 닫히지 않도록 한다.
             .show();
     }
-
 }

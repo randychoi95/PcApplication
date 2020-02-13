@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -110,6 +111,7 @@ public class FirstActivity extends AppCompatActivity {
         String email = id_edit_text.getText().toString();
         String password = pw_edit_text.getText().toString();
 
+
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -133,10 +135,5 @@ public class FirstActivity extends AppCompatActivity {
                     }
                 });
     }//doLoin
-
-
-
-
-
 
 }//class
