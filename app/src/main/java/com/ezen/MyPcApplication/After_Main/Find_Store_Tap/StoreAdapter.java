@@ -28,7 +28,6 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
     setClickListener listener;
 
     ArrayList<StoreItem> items = new ArrayList<StoreItem>();
-    ArrayList<StoreItem> searchs = new ArrayList<StoreItem>();
 
     View itemView;
 

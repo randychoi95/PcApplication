@@ -1,17 +1,24 @@
 package com.ezen.MyPcApplication.After_Main;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import com.ezen.MyPcApplication.First_View.FirstActivity;
 import com.ezen.MyPcApplication.FragmentCallback;
 import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.StoreFragment;
 import com.ezen.MyPcApplication.After_Main.Home_Tap.HomeFragment;
@@ -23,6 +30,7 @@ import com.ezen.MyPcApplication.Side_Navigation.Person.Person_InfoFragment;
 import com.ezen.MyPcApplication.Side_Navigation.Reservation.Reservation_CheckFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FragmentCallback {
@@ -40,10 +48,14 @@ public class MainActivity extends AppCompatActivity
 
     BottomNavigationView bottomNavigationView;
 
+    FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -83,6 +95,26 @@ public class MainActivity extends AppCompatActivity
                 }
 
                 return false; // 탭 변경 취소
+            }
+        });
+
+        // 네비게이션 뷰
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        View nav_header_view = navigationView.getHeaderView(0);
+
+        // 로그인한 유저표시
+        TextView textUser = nav_header_view.findViewById(R.id.user_id);
+        String user = firebaseAuth.getCurrentUser().getEmail();
+        textUser.setText(user + "님 환영합니다.");
+
+        // 로그아웃
+        Button btn_logout = nav_header_view.findViewById(R.id.btn_logout);
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doLogout();
             }
         });
     }
@@ -140,12 +172,29 @@ public class MainActivity extends AppCompatActivity
         getSupportFragmentManager().beginTransaction().replace(R.id.container, curFragment).commit();
     }
 
-    public void changeTap(int index){
-        if(index == 0)
-            bottomNavigationView.setSelectedItemId(R.id.tab1);
-        else if(index == 1)
-            bottomNavigationView.setSelectedItemId(R.id.tab2);
-        else
-            bottomNavigationView.setSelectedItemId(R.id.tab3);
+    public void doLogout(){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Light_Dialog);
+
+        alertDialog.setMessage("로그아웃을 하시겠습니까?")
+            .setTitle("로그아웃")
+            .setPositiveButton("취소", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            })
+            .setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    firebaseAuth.signOut();
+                    finish();
+                    Intent intent = new Intent(getApplicationContext(), FirstActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(MainActivity.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
+                }
+            })
+            .setCancelable(false)//백버튼으로 팝업창이 닫히지 않도록 한다.
+            .show();
     }
+
 }

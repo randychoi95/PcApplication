@@ -40,8 +40,6 @@ public class StoreFragment extends Fragment implements StoreAdapter.setClickList
 
     EditText editText;
 
-    ArrayList<StoreItem> search_list = new ArrayList<StoreItem>();
-
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
