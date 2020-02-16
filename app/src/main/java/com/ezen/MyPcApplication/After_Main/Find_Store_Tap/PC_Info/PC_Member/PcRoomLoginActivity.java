@@ -63,6 +63,7 @@ public class PcRoomLoginActivity extends AppCompatActivity {
 
     public void doPclogin(){
         // 로그인
+        finish();
         startActivity(new Intent(getApplicationContext(), ReservationActivity.class));
     }
 

@@ -17,8 +17,10 @@ import com.ezen.MyPcApplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class FirstActivity extends AppCompatActivity {
 
@@ -29,6 +31,7 @@ public class FirstActivity extends AppCompatActivity {
     EditText pw_edit_input;
 
     FirebaseAuth firebaseAuth;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,22 +113,13 @@ public class FirstActivity extends AppCompatActivity {
 
         String email = id_edit_text.getText().toString();
         String password = pw_edit_text.getText().toString();
-
-
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if( task.isSuccessful() ){
                             //로그인 성공함
-                            Toast.makeText(FirstActivity.this,
-                                    "로그인 성공했습니다.",
-                                    Toast.LENGTH_SHORT).show();
-
-                            finish();
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
-
+                            doEmailVerified();
                         }else{
                             //로그인 실패함
                             Toast.makeText(FirstActivity.this,
@@ -135,5 +129,25 @@ public class FirstActivity extends AppCompatActivity {
                     }
                 });
     }//doLoin
+
+    public void doEmailVerified(){
+        user = firebaseAuth.getCurrentUser();
+        user.sendEmailVerification()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            if(user.isEmailVerified()) {
+                                finish();
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                                Toast.makeText(getApplicationContext(), "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "로그인 인증이 필요합니다.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                });
+    }
 
 }//class
