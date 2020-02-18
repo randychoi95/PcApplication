@@ -76,6 +76,7 @@ public class Pc_Info_TabFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), PcRoomLoginActivity.class);
+                intent.putExtra("name", name);
                 startActivity(intent);
             }
         });
