@@ -50,8 +50,9 @@
                 style="@style/TextAppearance.App.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:drawableStart="@drawable/ic_label_outline_black_24dp"
-                android:hint="Input Email"
+                android:hint="Email"
                 android:textColor="@android:color/white" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -79,7 +80,6 @@
                     android:drawableStart="@drawable/ic_lock_outline_black_24dp"
                     android:fontFamily="@font/test"
                     android:hint="PW"
-                    android:inputType="text|textPassword"
                     android:textColor="@android:color/white" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -96,13 +96,13 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/member_repw"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="53dp"
                     android:layout_marginLeft="5dp"
                     android:hint="PW re"
-                    android:inputType="text|textPassword"
                     android:textColor="@android:color/white" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
 
         </LinearLayout>
 
@@ -111,6 +111,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phone_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:textColorHint="#A3A2A2"
+            android:theme="@style/joinEdit">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/member_phone"
+                style="@style/TextAppearance.App.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_call_black_24dp"
+                android:hint="phone"
+                android:textColor="@android:color/white" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btn_join"

@@ -34,29 +34,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/name_input_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="5dp"
-            android:hint="Name"
-            android:ems="10"
-            android:textColorHint="#A3A2A2"
-            android:theme="@style/joinEdit">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/find_edit_name2"
-                style="@style/TextAppearance.App.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_person_black_24dp"
-                android:inputType="text"
-                android:textColor="@android:color/white" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/id_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,26 +49,6 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_mail_black_24dp"
                 android:hint="email"
-                android:textColor="@android:color/white" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phone_input_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:textColorHint="#A3A2A2"
-            android:theme="@style/joinEdit">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/find_edit_phone2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_call_black_24dp"
-                android:hint="phone"
                 android:textColor="@android:color/white" />
 
         </com.google.android.material.textfield.TextInputLayout>
