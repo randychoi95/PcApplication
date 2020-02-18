@@ -192,13 +192,12 @@ public class PcRoomJoinActivity extends AppCompatActivity {
                         for(PcMemberDTO pcMemberDTO : pcMemberDTOList){
                             if(pcMemberDTO.getId().equals(checkId)) {
                                 Toast.makeText(getApplicationContext(), "중복된 아이디입니다.", Toast.LENGTH_SHORT).show();
-                                break;
-                            } else {
-                                doAdd();
-                                Toast.makeText(getApplicationContext(), "회원가입이 되었습니다.", Toast.LENGTH_SHORT).show();
-                                finish();
+                                return;
                             }
                         }
+                        doAdd();
+                        Toast.makeText(getApplicationContext(), "회원가입이 되었습니다.", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 });
     }
