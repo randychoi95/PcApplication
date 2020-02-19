@@ -123,23 +123,6 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
     <TextView
-        android:id="@+id/text_findID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="113dp"
-        android:layout_marginLeft="113dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="43dp"
-        android:fontFamily="@font/test"
-        android:text="Find ID"
-        android:textColor="@android:color/background_light"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_join"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
         android:id="@+id/text_findPW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
