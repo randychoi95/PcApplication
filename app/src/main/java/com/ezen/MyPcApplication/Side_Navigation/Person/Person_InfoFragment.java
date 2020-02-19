@@ -75,7 +75,7 @@ public class Person_InfoFragment extends Fragment implements PersonInfoAdapter.s
         list_info.setLayoutManager(layoutManager);
 
         // 아답터 클래스 생성
-        personInfoAdapter = new PersonInfoAdapter(this);
+        personInfoAdapter = new PersonInfoAdapter(this, this);
         personInfoAdapter.addItem(new PersonInfoItem("비밀번호 변경"));
         personInfoAdapter.addItem(new PersonInfoItem("회원탈퇴"));
 
@@ -120,6 +120,7 @@ public class Person_InfoFragment extends Fragment implements PersonInfoAdapter.s
             db.collection("Member").document(userID).update("phone", editPhone.getText().toString());
             Toast.makeText(getContext(), "정보변경이 완료되었습니다.", Toast.LENGTH_SHORT).show();
     }
+
 
 
 
