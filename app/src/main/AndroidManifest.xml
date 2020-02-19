@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".After_Main.Find_Store_Tap.PC_Info.PC_Member.PcRoomJoinActivity"></activity>
+        <activity android:name=".After_Main.Find_Store_Tap.PC_Info.PC_Member.PcRoomPwResetActivity"></activity>
+        <activity android:name=".After_Main.Find_Store_Tap.PC_Info.PC_Member.PcRoomPwFindActivity" />
+        <activity android:name=".After_Main.Find_Store_Tap.PC_Info.PC_Member.PcRoomIdFindActivity" />
+        <activity android:name=".After_Main.Find_Store_Tap.PC_Info.PC_Member.PcRoomJoinActivity" />
         <activity android:name=".After_Main.Find_Store_Tap.PC_Info.PC_Member.PcRoomLoginActivity" />
         <activity
             android:name=".First_View.FindPwActivity"
