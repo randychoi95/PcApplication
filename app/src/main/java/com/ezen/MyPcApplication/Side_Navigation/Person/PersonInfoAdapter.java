@@ -1,5 +1,6 @@
 package com.ezen.MyPcApplication.Side_Navigation.Person;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,18 +9,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.ezen.MyPcApplication.After_Main.MainActivity;
+import com.ezen.MyPcApplication.First_View.FirstActivity;
 import com.ezen.MyPcApplication.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
 public class PersonInfoAdapter extends RecyclerView.Adapter<PersonInfoAdapter.ViewHolder> {
     setClickListener listener;
 
-    ArrayList<PersonInfoItem> items = new ArrayList<PersonInfoItem>();
+    ArrayList<PersonInfoItem>
+            items = new ArrayList<PersonInfoItem>();
     View itemView;
+
+    FirebaseAuth auth = FirebaseAuth.getInstance();  // 파이어베이스 인증
+    FirebaseUser currentUser = auth.getCurrentUser(); // 현재 사용자의 계정 데이타
 
     PersonInfoAdapter(setClickListener listener){
         this.listener = listener;
@@ -48,7 +58,11 @@ public class PersonInfoAdapter extends RecyclerView.Adapter<PersonInfoAdapter.Vi
                     Toast.makeText(v.getContext(), position + "번째", Toast.LENGTH_SHORT).show();
                 } else if(position == 1) {
                     // 회원탈퇴
-                    Toast.makeText(v.getContext(), position + "번째", Toast.LENGTH_SHORT).show();
+                    currentUser.delete();
+                    Intent intent = new Intent(itemView.getContext(), FirstActivity.class);
+                    listener.setClick(intent);
+
+                    Toast.makeText(v.getContext(), position + "회원 탈퇴 되었습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -80,4 +94,6 @@ public class PersonInfoAdapter extends RecyclerView.Adapter<PersonInfoAdapter.Vi
     interface setClickListener{
         void setClick(Intent intent);
     }
+
+
 }
