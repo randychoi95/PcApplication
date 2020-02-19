@@ -30,7 +30,9 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
     @Override
     public NoticeAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        // inflater로 XML 뷰 생성
         itemView = inflater.inflate(R.layout.activity_notice_item, parent, false);
+
         return new NoticeAdapter.ViewHolder(itemView);
     }
 
@@ -42,6 +44,7 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Notice_ContentActivity 쪽으로 DB 정보 전달
                 Intent intent = new Intent(itemView.getContext(), Notice_ContentActivity.class);
                 intent.putExtra("title", items.get( position ).getTitle());
                 intent.putExtra("content", items.get( position ).getContent());

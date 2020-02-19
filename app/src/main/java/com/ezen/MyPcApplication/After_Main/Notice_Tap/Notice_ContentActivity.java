@@ -24,8 +24,6 @@ public class Notice_ContentActivity extends AppCompatActivity {
     TextView textViewTitle;
     TextView text_content;
 
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +32,8 @@ public class Notice_ContentActivity extends AppCompatActivity {
         // 툴바에 뒤로가기 백버튼 생성
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+        // DB 정보 받아서 리스트뷰에 출력
         Intent intent = getIntent();
         String notice_title = intent.getExtras().getString("title");
         String notice_content = intent.getExtras().getString("content");

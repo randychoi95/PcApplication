@@ -43,8 +43,6 @@ public class Person_InfoFragment extends Fragment implements PersonInfoAdapter.s
     EditText editPhone;
     TextView email_Text;
 
-    String phone;
-
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -55,19 +53,17 @@ public class Person_InfoFragment extends Fragment implements PersonInfoAdapter.s
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_person_info, container, false);
 
-
+        editPhone = rootView.findViewById(R.id.editPhone);
         email_Text = rootView.findViewById(R.id.email_Text);
         String email = currentUser.getEmail();
         email_Text.setText(email);
 
-        editPhone = rootView.findViewById(R.id.editPhone);
-
-
+        // 정보변경 버튼
         Button btn_convert = rootView.findViewById(R.id.btn_convert);
         btn_convert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Log.e("Han", email);
+                personInfoUpdate();
             }
         });
 
@@ -83,29 +79,31 @@ public class Person_InfoFragment extends Fragment implements PersonInfoAdapter.s
         personInfoAdapter.addItem(new PersonInfoItem("비밀번호 변경"));
         personInfoAdapter.addItem(new PersonInfoItem("회원탈퇴"));
 
-        list_info.setAdapter(personInfoAdapter);
+        list_info.setAdapter(personInfoAdapter); // 아답터 연결
 
-//        db.collection("Member")
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        Log.e("Activity", "리스트 가져오기");
-//                        if (task.isSuccessful()) {
-//                            // 리스트 가져오기 성공
-//                            Log.e("Activity", "리스트 가져오기 성공");
-//                            List<testItem> testItemList = task.getResult().toObjects(testItem.class);
-//                            for(testItem list : testItemList){
-//                                if(currentUser.getUid().equals(list.getUid())){
-//                                    phone.setText(list.getPhone());
-//                                }
-//                            }
-//                        }else {
-//                            // 리스트 가져오기 실패
-//                            Log.e("Activity", "리스트 가져오기 실패");
-//                        }
-//                    }
-//                });
+        // DB 정보 불러오기
+        db.collection("Member")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        Log.e("Activity", "리스트 가져오기");
+                        if (task.isSuccessful()) {
+                            // 리스트 가져오기 성공
+                            Log.e("Activity", "리스트 가져오기 성공");
+                            List<PersonInfoItem> personItemList = task.getResult().toObjects(PersonInfoItem.class);
+                            for(PersonInfoItem list : personItemList){
+                                // 현재 사용자 uid와 리스에 저장된 uid 비교해서 값을 가져옴
+                                if(currentUser.getUid().equals(list.getUid())){
+                                    editPhone.setText(list.getPhone());
+                                }
+                            }
+                        }else {
+                            // 리스트 가져오기 실패
+                            Log.e("Activity", "리스트 가져오기 실패");
+                        }
+                    }
+                });
 
         return rootView;
     }
@@ -115,6 +113,13 @@ public class Person_InfoFragment extends Fragment implements PersonInfoAdapter.s
         startActivity(intent);
     }
 
+    // 개인정보 변경
+    public void personInfoUpdate() {
+            String userID = auth.getCurrentUser().getUid();
+
+            db.collection("Member").document(userID).update("phone", editPhone.getText().toString());
+            Toast.makeText(getContext(), "정보변경이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+    }
 
 
 
