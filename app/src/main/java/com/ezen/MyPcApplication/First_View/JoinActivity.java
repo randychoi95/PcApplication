@@ -40,11 +40,13 @@ public class JoinActivity extends AppCompatActivity {
     TextInputLayout pw_input_layout;
     TextInputLayout repw_input_layout;
     TextInputLayout phone_input_layout;
+    TextInputLayout name_input_layout;
 
     EditText member_id;
     EditText member_pw;
     EditText member_repw;
     EditText member_phone;
+    EditText member_name;
 
     TextView pw_check;
 
@@ -61,6 +63,9 @@ public class JoinActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         user = firebaseAuth.getCurrentUser();
 
+        // 이름 텍스트
+        name_input_layout = findViewById(R.id.name_input_layout);
+        member_name = name_input_layout.getEditText();
 
         // 이메일 텍스트
         id_input_layout = findViewById(R.id.id_input_layout);
@@ -151,9 +156,10 @@ public class JoinActivity extends AppCompatActivity {
         String id = firebaseAuth.getCurrentUser().getEmail(); // 회원가입한 사용자 이메일
         String uid = firebaseAuth.getCurrentUser().getUid();  // 회원가입한 사용자 uid
         String phone = member_phone.getText().toString();
+        String name = member_name.getText().toString();
 
 
-        JoinItem joinItem = new JoinItem(id, phone, uid);
+        JoinItem joinItem = new JoinItem(id, phone, uid, name);
 
         // add()함수를 사용하면, auto ID가 자동으로 발급됨.
         db.collection("Member").document(uid).set(joinItem)
