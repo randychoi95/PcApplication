@@ -49,6 +49,7 @@ public class FindIdActivity extends AppCompatActivity {
 
     }
 
+    // 아이디 찾기
     private void findID(){
         String name = find_edit_name.getText().toString();
         String phone = find_edit_phone.getText().toString();
@@ -60,17 +61,12 @@ public class FindIdActivity extends AppCompatActivity {
                 if (queryDocumentSnapshots.isEmpty()) {
                     Log.e("ad", "실패");
                     Toast.makeText(FindIdActivity.this, "입력한 정보와 일치하는 계정이 없습니다.", Toast.LENGTH_SHORT).show();
-//                    removeDialog(1);
                 } else {
                     for (QueryDocumentSnapshot snapshot : queryDocumentSnapshots) {
                         FindIdItem users = snapshot.toObject(FindIdItem.class);
                         email = users.getId();
                         Toast.makeText(getApplicationContext(), email, Toast.LENGTH_LONG).show();
                         finish();
-//                        Intent intent = new Intent(getApplicationContext(), FirstActivity.class);
-//                        intent.putExtra("findId", email);
-//                        removeDialog(1);
-//                        startActivity(intent);
                     }
                 }
             }
