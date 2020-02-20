@@ -151,7 +151,7 @@ public class JoinActivity extends AppCompatActivity {
                 });
     }
 
-    // DB collection에 저장
+// DB collection에 저장
     private void doAdd(){
         String id = firebaseAuth.getCurrentUser().getEmail(); // 회원가입한 사용자 이메일
         String uid = firebaseAuth.getCurrentUser().getUid();  // 회원가입한 사용자 uid
@@ -184,6 +184,6 @@ public class JoinActivity extends AppCompatActivity {
                     }
                 });
 
-    }// onCreate
+    }
 
 }// Class

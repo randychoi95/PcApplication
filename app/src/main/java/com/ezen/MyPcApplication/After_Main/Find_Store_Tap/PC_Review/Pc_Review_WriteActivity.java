@@ -1,5 +1,6 @@
 package com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Review;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,9 +16,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.ezen.MyPcApplication.First_View.FirstActivity;
+import com.ezen.MyPcApplication.First_View.JoinItem;
 import com.ezen.MyPcApplication.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Pc_Review_WriteActivity extends AppCompatActivity {
 
@@ -38,9 +45,9 @@ public class Pc_Review_WriteActivity extends AppCompatActivity {
         btn_review_resgister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String result = editText_review.getText().toString();
+                String comments = editText_review.getText().toString();
                 Intent intent = new Intent();
-                intent.putExtra("listUpdate", result);
+                intent.putExtra("listUpdate", comments);
                 setResult(100, intent); //  onActivityResult()가 호출됨.
                 Toast.makeText(getApplicationContext(), "등록되었습니다", Toast.LENGTH_SHORT).show();
                 finish();

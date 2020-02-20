@@ -1,9 +1,12 @@
 package com.ezen.MyPcApplication.First_View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,6 +40,8 @@ public class FirstActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
 
+    String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +68,7 @@ public class FirstActivity extends AppCompatActivity {
         // TextInputEditText
         pw_edit_input = pw_text_input.getEditText();
 
+        // 로그인 버튼
         Button btn_login = findViewById(R.id.btn_login);
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +77,7 @@ public class FirstActivity extends AppCompatActivity {
             }
         });
 
+        // 회원가입 버튼
         Button btn_join = findViewById(R.id.btn_join);
         btn_join.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +87,7 @@ public class FirstActivity extends AppCompatActivity {
             }
         });
 
+        // 아이디 찾기 버튼
         TextView text_findID = findViewById(R.id.text_findID);
         text_findID.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +97,7 @@ public class FirstActivity extends AppCompatActivity {
             }
         });
 
+        // 비밀번호 찾기 버튼
         TextView text_findPW = findViewById(R.id.text_findPW);
         text_findPW.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,10 +106,10 @@ public class FirstActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }//End onCreate
 
     private void doLogin(){
-
         EditText id_edit_text = findViewById(R.id.id_edit_text);
         EditText pw_edit_text = findViewById(R.id.pw_edit_text);
 
@@ -133,6 +142,7 @@ public class FirstActivity extends AppCompatActivity {
                 });
     }//doLoin
 
+
     public void doEmailVerified(){
         user = firebaseAuth.getCurrentUser();
         user.sendEmailVerification()
@@ -152,7 +162,5 @@ public class FirstActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
 
 }//class
