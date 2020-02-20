@@ -31,7 +31,7 @@ import java.util.TimeZone;
 public class PcRoomLoginActivity extends AppCompatActivity {
 
     // PC방 회원들 리스트
-    static List<PcMemberDTO> pcMemberDTOS = new ArrayList<PcMemberDTO>();
+    List<PcMemberDTO> pcMemberDTOS = new ArrayList<PcMemberDTO>();
     // PC방 한 회원 정보
     PcMemberDTO singleMemberDTO;
     // 아이디 구분 변수
@@ -163,9 +163,12 @@ public class PcRoomLoginActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "21:00 ~ 09:00까지 청소년은 예약하실 수 없습니다.", Toast.LENGTH_SHORT).show();
                     // 성인이면
                     } else {
+                        String id = pcroom_id_edit.getText().toString();
                         pcroom_id_edit.setText("");
                         pcroom_pw_edit.setText("");
                         Intent intent = new Intent(getApplicationContext(), ReservationActivity.class);
+                        intent.putExtra("pcname", pcname);
+                        intent.putExtra("id", id);
                         startActivity(intent);
                         Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                     }
