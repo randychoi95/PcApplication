@@ -71,7 +71,7 @@ public class PcRoomIdFindActivity extends AppCompatActivity {
                     Toast.makeText(PcRoomIdFindActivity.this, "입력한 정보와 일치하는 계정이 없습니다.", Toast.LENGTH_SHORT).show();
                 } else {
                     for (QueryDocumentSnapshot snapshot : queryDocumentSnapshots) {
-                        com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.PC_Member.FindIdItem users = snapshot.toObject(FindIdItem.class);
+                        PCFindIdItem users = snapshot.toObject(PCFindIdItem.class);
                         email = users.getId();
                         Toast.makeText(getApplicationContext(), email, Toast.LENGTH_LONG).show();
                         finish();

@@ -60,6 +60,11 @@ public class ReservationActivity extends AppCompatActivity {
         // 툴바에 뒤로가기 백버튼 생성
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // pc방 이름과 pc방 회원 id가져오기
+        Intent intent = getIntent();
+        pcname = intent.getStringExtra("pcname");
+        id = intent.getStringExtra("id");
+
         db = FirebaseFirestore.getInstance();
         // 생성 시 피시방 회원 테이블 가져오기
         db.collection("Reservation")
@@ -71,23 +76,15 @@ public class ReservationActivity extends AppCompatActivity {
                             // 리스트 가져오기 성공
                             reservationDTOs = task.getResult().toObjects(ReservationDTO.class);
                             doFind(pcname, id);
-                            Log.e("length:", Integer.toString(reservationDTOs.size()));
-                            Log.e("isEmpty:", Integer.toString(isEmpty));
-                            Log.e("seat:", seat);
-                            doFirst(isEmpty, seat);
+                            if( isEmpty != 0 && seat != null) {
+                                doFirst(isEmpty, seat);
+                            }
                         } else {
                             // 리스트 가져오기 실패
                             Log.e("Activity", "리스트 가져오기 실패");
                         }
                     }
                 });
-
-
-
-        // pc방 이름과 pc방 회원 id가져오기
-        Intent intent = getIntent();
-        pcname = intent.getStringExtra("pcname");
-        id = intent.getStringExtra("id");
 
         for(int i=0; i<btnArrs.length; i++){
             final int index;
@@ -149,10 +146,16 @@ public class ReservationActivity extends AppCompatActivity {
                 builder.setNegativeButton("예", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        reset(btnArrs[pc_reservation_seat-1]);
-                        pc_reservation_seat = seat_num;
-                        doReservation();
-                        btn_num.setBackgroundColor(Color.rgb(230, 230, 230));
+                        if(pc_reservation_seat != 0) {
+                            reset(btnArrs[pc_reservation_seat - 1]);
+                            pc_reservation_seat = seat_num;
+                            doReservation();
+                            btn_num.setBackgroundColor(Color.rgb(230, 230, 230));
+                        } else {
+                            pc_reservation_seat = seat_num;
+                            doReservation();
+                            btn_num.setBackgroundColor(Color.rgb(230, 230, 230));
+                        }
                     }
                 });
 
