@@ -13,6 +13,10 @@ public class PcMemberDTO {
 
     public PcMemberDTO(){}
 
+    public PcMemberDTO(String pw) {
+        this.pw = pw;
+    }
+
     public PcMemberDTO(String name, String id, String pw, String birth, String phone, String uid, String email, String pcname) {
         this.name = name;
         this.id = id;

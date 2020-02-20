@@ -89,6 +89,7 @@ public class FirstActivity extends AppCompatActivity {
             }
         });
 
+
         TextView text_findPW = findViewById(R.id.text_findPW);
         text_findPW.setOnClickListener(new View.OnClickListener() {
             @Override
