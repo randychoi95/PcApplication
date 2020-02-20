@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.PC_Reservation.ReservationActivity;
+import com.ezen.MyPcApplication.First_View.FindPwActivity;
 import com.ezen.MyPcApplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,7 +32,7 @@ import java.util.TimeZone;
 public class PcRoomLoginActivity extends AppCompatActivity {
 
     // PC방 회원들 리스트
-    List<PcMemberDTO> pcMemberDTOS = new ArrayList<PcMemberDTO>();
+    static List<PcMemberDTO> pcMemberDTOS = new ArrayList<PcMemberDTO>();
     // PC방 한 회원 정보
     PcMemberDTO singleMemberDTO;
     // 아이디 구분 변수
@@ -125,6 +126,28 @@ public class PcRoomLoginActivity extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
+
+
+        TextView text_findID = findViewById(R.id.text_findID);
+        text_findID.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PcRoomIdFindActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+        TextView text_findPW = findViewById(R.id.text_findPW);
+        text_findPW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PcRoomPwFindActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 
@@ -163,12 +186,9 @@ public class PcRoomLoginActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "21:00 ~ 09:00까지 청소년은 예약하실 수 없습니다.", Toast.LENGTH_SHORT).show();
                     // 성인이면
                     } else {
-                        String id = pcroom_id_edit.getText().toString();
                         pcroom_id_edit.setText("");
                         pcroom_pw_edit.setText("");
                         Intent intent = new Intent(getApplicationContext(), ReservationActivity.class);
-                        intent.putExtra("pcname", pcname);
-                        intent.putExtra("id", id);
                         startActivity(intent);
                         Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                     }
