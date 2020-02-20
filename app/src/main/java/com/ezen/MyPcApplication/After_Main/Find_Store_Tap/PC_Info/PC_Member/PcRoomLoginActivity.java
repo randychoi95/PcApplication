@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.PC_Reservation.ReservationActivity;
+import com.ezen.MyPcApplication.First_View.FindPwActivity;
 import com.ezen.MyPcApplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -125,6 +126,28 @@ public class PcRoomLoginActivity extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
+
+
+        TextView text_findID = findViewById(R.id.text_findID);
+        text_findID.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PcRoomIdFindActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+        TextView text_findPW = findViewById(R.id.text_findPW);
+        text_findPW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PcRoomPwFindActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 

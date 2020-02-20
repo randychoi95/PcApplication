@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
@@ -111,6 +112,7 @@ public class JoinActivity extends AppCompatActivity {
         // 핸드폰 번호 텍스트
         phone_input_layout = findViewById(R.id.phone_input_layout);
         member_phone = phone_input_layout.getEditText();
+        member_phone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         // 회원가입 버튼
         Button btn_join = findViewById(R.id.btn_join);
@@ -161,7 +163,6 @@ public class JoinActivity extends AppCompatActivity {
 
         JoinItem joinItem = new JoinItem(id, phone, uid, name);
 
-        // add()함수를 사용하면, auto ID가 자동으로 발급됨.
         db.collection("Member").document(uid).set(joinItem)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

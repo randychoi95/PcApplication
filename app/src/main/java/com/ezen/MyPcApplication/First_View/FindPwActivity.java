@@ -46,8 +46,6 @@ public class FindPwActivity extends AppCompatActivity {
             }
         });
 
-
-
     }//oncreate
 
     // 비밀번호 재설정 이메일 보내기.
@@ -66,7 +64,6 @@ public class FindPwActivity extends AppCompatActivity {
                         }
                     }
                 });
-
 
     }
 

@@ -152,9 +152,6 @@ public class PcRoomJoinActivity extends AppCompatActivity {
                     if (userPhone.getText().toString().length() == 13 ||
                             !userPhone.getText().toString().contains("-")) {
                         checkId();
-//                            doAdd();
-//                            Toast.makeText(this, "회원가입이 되었습니다.", Toast.LENGTH_SHORT).show();
-//                            finish();
                     } else {
                         phone_check = findViewById(R.id.phone_check);
                         phone_check.setTextColor(Color.RED);
@@ -235,16 +232,14 @@ public class PcRoomJoinActivity extends AppCompatActivity {
 
         PcMemberDTO pcMemberDTO = new PcMemberDTO(name, id, pw, birth, phone, uid, email, pcname);
 
-        // add()함수를 사용하면, auto ID가 자동으로 발급됨.
-        db.collection("PcMember")
-                .add(pcMemberDTO)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        db.collection("PcMember").document(id).set(pcMemberDTO)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.e("Activity", "DB쓰기 성공:" + documentReference.getId());
+                    public void onSuccess(Void aVoid) {
+                        Log.e("Activity", "DB쓰기 성공");
                     }
-                })
-                .addOnFailureListener(new OnFailureListener() {
+                }).
+                addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.e("Activity", "DB쓰기 실패:" + e);
