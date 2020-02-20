@@ -112,7 +112,6 @@ public class JoinActivity extends AppCompatActivity {
         // 핸드폰 번호 텍스트
         phone_input_layout = findViewById(R.id.phone_input_layout);
         member_phone = phone_input_layout.getEditText();
-        member_phone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         // 회원가입 버튼
         Button btn_join = findViewById(R.id.btn_join);
@@ -138,6 +137,12 @@ public class JoinActivity extends AppCompatActivity {
 
         if (member_pw == null || member_pw.getText().toString().length() < 1) {
             Toast.makeText(this, "비밀번호를 입력하세요", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (member_phone.getText().toString().length() == 13 ||
+                !member_phone.getText().toString().contains("-")) {
+            Toast.makeText(this, "전화번호를 형식에 맞게 입력하세요", Toast.LENGTH_SHORT).show();
             return;
         }
 

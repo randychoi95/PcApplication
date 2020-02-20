@@ -94,7 +94,6 @@ public class PcRoomJoinActivity extends AppCompatActivity {
         // phone
         pcroom_userPhone_input = findViewById(R.id.pcroom_userPhone_input);
         userPhone = pcroom_userPhone_input.getEditText();
-        userPhone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         Button btn_Pcjoin = findViewById(R.id.btn_Pcjoin);
         btn_Pcjoin.setOnClickListener(new View.OnClickListener() {
