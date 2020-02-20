@@ -18,7 +18,7 @@ import java.util.ArrayList;
 // 제네릭으로 타입을 추가함.
 public class Pc_Review_Adapter extends RecyclerView.Adapter<Pc_Review_Adapter.ViewHolder> {
 
-    ArrayList<Pc_Review_Item> items = new ArrayList<Pc_Review_Item>();
+    ArrayList<Pc_Review_AdapterItem> items = new ArrayList<Pc_Review_AdapterItem>();
     View itemView;
 
     @NonNull
@@ -32,7 +32,7 @@ public class Pc_Review_Adapter extends RecyclerView.Adapter<Pc_Review_Adapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Pc_Review_Item item = items.get(position);
+        Pc_Review_AdapterItem item = items.get(position);
         holder.setItem(item);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -49,12 +49,12 @@ public class Pc_Review_Adapter extends RecyclerView.Adapter<Pc_Review_Adapter.Vi
         return items.size();
     }
 
-    public void addItem(Pc_Review_Item item){
+    public void addItem(Pc_Review_AdapterItem item){
         items.add((item));
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView text_userid;
+        TextView text_userName;
         TextView text_date;
         TextView text_comments;
         ImageView imageView;
@@ -62,14 +62,14 @@ public class Pc_Review_Adapter extends RecyclerView.Adapter<Pc_Review_Adapter.Vi
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            text_userid = itemView.findViewById(R.id.text_userid);
+            text_userName = itemView.findViewById(R.id.text_userid);
             text_date = itemView.findViewById(R.id.text_date);
             text_comments = itemView.findViewById(R.id.text_comments);
             imageView = itemView.findViewById(R.id.user_image);
         }
 
-        public void setItem(Pc_Review_Item item){
-            text_userid.setText(item.getId());
+        public void setItem(Pc_Review_AdapterItem item){
+            text_userName.setText(item.getName());
             text_date.setText(item.getDate());
             text_comments.setText(item.getComments());
             imageView.setImageResource(item.getImageId());
@@ -77,3 +77,4 @@ public class Pc_Review_Adapter extends RecyclerView.Adapter<Pc_Review_Adapter.Vi
     }
 
 }
+

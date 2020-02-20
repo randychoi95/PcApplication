@@ -93,7 +93,7 @@ public class Person_InfoFragment extends Fragment implements PersonInfoAdapter.s
                             Log.e("Activity", "리스트 가져오기 성공");
                             List<PersonInfoItem> personItemList = task.getResult().toObjects(PersonInfoItem.class);
                             for(PersonInfoItem list : personItemList){
-                                // 현재 사용자 uid와 리스에 저장된 uid 비교해서 값을 가져옴
+                                // 현재 사용자 uid와 리스트에 저장된 uid 비교해서 값을 가져옴
                                 if(currentUser.getUid().equals(list.getUid())){
                                     editPhone.setText(list.getPhone());
                                 }

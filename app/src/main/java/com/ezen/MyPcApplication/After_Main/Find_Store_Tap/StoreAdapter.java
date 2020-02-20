@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.Pc_Info_TabActivity;
+import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Review.Pc_Review_TabFragment;
 import com.ezen.MyPcApplication.R;
 
 import java.util.ArrayList;
@@ -63,6 +65,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
                 intent.putExtra("ram", items.get(position).getRam());
                 intent.putExtra("vga", items.get(position).getVga());
                 listener.setClick(intent);
+                
             }
         });
 
