@@ -11,6 +11,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import com.ezen.MyPcApplication.R;
 
 public class Home_Pager_Adapter extends PagerAdapter {
+
     // R.drawable.(사진파일이름)으로 images 배열 생성
     private int[] images = {R.drawable.pc_event1, R.drawable.pc_event2, R.drawable.pc_event3};
     private LayoutInflater inflater;
