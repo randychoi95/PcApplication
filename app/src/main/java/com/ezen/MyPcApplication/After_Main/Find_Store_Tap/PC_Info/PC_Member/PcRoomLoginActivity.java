@@ -202,11 +202,13 @@ public class PcRoomLoginActivity extends AppCompatActivity {
                     // 성인이면
                     } else {
                         String id = pcroom_id_edit.getText().toString();
+                        String uid = singleMemberDTO.getUid();
                         pcroom_id_edit.setText("");
                         pcroom_pw_edit.setText("");
                         Intent intent = new Intent(getApplicationContext(), ReservationActivity.class);
                         intent.putExtra("pcname", pcname);
                         intent.putExtra("id", id);
+                        intent.putExtra("uid", uid);
                         startActivity(intent);
                         Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                     }

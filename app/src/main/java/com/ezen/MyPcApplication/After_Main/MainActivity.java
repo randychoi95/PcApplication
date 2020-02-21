@@ -136,16 +136,16 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
         if(id == R.id.nav_info){
-            Toast.makeText(this, "개인정보 메뉴가 선택됨", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "개인정보 메뉴가 선택됨", Toast.LENGTH_SHORT).show();
             onFragmentSelected(0, null);
         } else if(id == R.id.nav_login){
-            Toast.makeText(this, "로그인 내역 메뉴가 선택됨", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "로그인 내역 메뉴가 선택됨", Toast.LENGTH_SHORT).show();
             onFragmentSelected(1, null);
         }else if(id == R.id.nav_pay){
-            Toast.makeText(this, "결재 내역 메뉴가 선택됨", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "결재 내역 메뉴가 선택됨", Toast.LENGTH_SHORT).show();
             onFragmentSelected(2, null);
         }else if(id == R.id.nav_reservation){
-            Toast.makeText(this, "예약 내역 메뉴가 선택됨", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "예약 내역 메뉴가 선택됨", Toast.LENGTH_SHORT).show();
             onFragmentSelected(3, null);
         }
 

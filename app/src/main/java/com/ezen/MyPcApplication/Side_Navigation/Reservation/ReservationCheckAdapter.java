@@ -8,13 +8,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.PC_Reservation.ReservationDTO;
 import com.ezen.MyPcApplication.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ReservationCheckAdapter extends RecyclerView.Adapter<ReservationCheckAdapter.ViewHolder> {
 
-    ArrayList<ReservationCheckItem> items = new ArrayList<ReservationCheckItem>();
+    ArrayList<ReservationDTO> items = new ArrayList<ReservationDTO>();
     View itemView;
 
     @NonNull
@@ -28,8 +30,8 @@ public class ReservationCheckAdapter extends RecyclerView.Adapter<ReservationChe
 
     @Override
     public void onBindViewHolder(@NonNull ReservationCheckAdapter.ViewHolder holder, final int position) {
-            ReservationCheckItem item = items.get(position);
-            holder.setItem(item);
+        ReservationDTO item = items.get(position);
+        holder.setItem(item);
     }
 
     @Override
@@ -37,9 +39,14 @@ public class ReservationCheckAdapter extends RecyclerView.Adapter<ReservationChe
         return items.size();
     }
 
-    public void addItem(ReservationCheckItem item){
+    public void addItem(ReservationDTO item){
         items.add(item);
     }
+
+    public void Reverse(){
+        Collections.reverse(items);
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView date_content;
         TextView reservation_content;
@@ -50,10 +57,10 @@ public class ReservationCheckAdapter extends RecyclerView.Adapter<ReservationChe
             reservation_content = itemView.findViewById(R.id.reservation_content);
         }
 
-        public void setItem(ReservationCheckItem item){
+        public void setItem(ReservationDTO item){
 
-            date_content.setText(item.getLoginDate());
-            reservation_content.setText(item.getReservation_content());
+            date_content.setText(item.getDate());
+            reservation_content.setText(item.getSeat());
         }
     }
 

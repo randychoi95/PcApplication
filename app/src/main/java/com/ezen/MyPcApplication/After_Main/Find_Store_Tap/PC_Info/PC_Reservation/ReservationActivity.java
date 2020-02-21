@@ -16,24 +16,21 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.ezen.MyPcApplication.R;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 public class ReservationActivity extends AppCompatActivity {
 
-    static List<ReservationDTO> reservationDTOs = new ArrayList<ReservationDTO>();
-
     int pc_reservation_seat;
-    int time = 0;
 
     Button[] btnArrs = new Button[27];
     int[] btnid = {R.id.seat_1, R.id.seat_2, R.id.seat_3, R.id.seat_4, R.id.seat_5, R.id.seat_6, R.id.seat_7, R.id.seat_8,
@@ -42,6 +39,8 @@ public class ReservationActivity extends AppCompatActivity {
                     R.id.seat_25, R.id.seat_26, R.id.seat_27};
     Button btn_num;
 
+    FirebaseAuth firebaseAuth;
+    FirebaseUser currentUser;
     FirebaseFirestore db;
 
     ColorDrawable color;
@@ -50,6 +49,8 @@ public class ReservationActivity extends AppCompatActivity {
     String id;
     int isEmpty;
     String seat;
+    String myuid; // 내 계정에서 나의 Pc방 id로 로그인한 사람 uid
+    String otheruid; // 내 계정에서 다른 사람의 Pc방 id로 로그인한 사람 uid
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,27 +65,28 @@ public class ReservationActivity extends AppCompatActivity {
         Intent intent = getIntent();
         pcname = intent.getStringExtra("pcname");
         id = intent.getStringExtra("id");
+        myuid = intent.getStringExtra("uid");
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
+
         // 생성 시 피시방 회원 테이블 가져오기
-        db.collection("Reservation")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            // 리스트 가져오기 성공
-                            reservationDTOs = task.getResult().toObjects(ReservationDTO.class);
-                            doFind(pcname, id);
-                            if( isEmpty != 0 && seat != null) {
-                                doFirst(isEmpty, seat);
-                            }
-                        } else {
-                            // 리스트 가져오기 실패
-                            Log.e("Activity", "리스트 가져오기 실패");
-                        }
+        db.collection("Reservation").whereEqualTo("pcname", pcname).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(DocumentSnapshot snapshot : queryDocumentSnapshots){
+                    ReservationDTO reservationDTO = snapshot.toObject(ReservationDTO.class);
+                    if(id.equals(reservationDTO.getId())){
+                        isEmpty = reservationDTO.getIsEmpty();
+                        seat = reservationDTO.getSeat();
+                        otheruid = reservationDTO.getUid();
+                        doFirst(isEmpty, seat);
+                        return;
                     }
-                });
+                }
+            }
+        });
 
         for(int i=0; i<btnArrs.length; i++){
             final int index;
@@ -121,17 +123,6 @@ public class ReservationActivity extends AppCompatActivity {
                     btnArrs[i].setBackgroundColor(Color.argb(255, 102, 153, 0));
                     pc_reservation_seat = i + 1;
                 }
-                break;
-            }
-        }
-    }
-
-    // 자리상태와 좌석번호 알아내기
-    private void doFind(String pcname, String id){
-        for(int i=0; i<reservationDTOs.size(); i++) {
-            if (reservationDTOs.get(i).getPcname().equals(pcname) && reservationDTOs.get(i).getId().equals(id)) {
-                isEmpty = reservationDTOs.get(i).getIsEmpty();
-                seat = reservationDTOs.get(i).getSeat();
                 break;
             }
         }
@@ -182,21 +173,55 @@ public class ReservationActivity extends AppCompatActivity {
         btn_num.setBackgroundColor(Color.argb(255, 102, 153, 0));
     }
 
+
     // 예약하기
     private void doReservation(){
+
+        String current_uid = currentUser.getUid();
+
+            if (myuid.equals(current_uid)) {
+                doDelete();
+                try {
+                    Thread.sleep(1000);
+                    doAdd();
+                    return;
+                } catch (Exception e) {
+                }
+            }
+            if(otheruid != null) {
+                if (otheruid.equals(myuid)) {
+                    doDelete();
+                    try {
+                        Thread.sleep(1000);
+                        doAdd();
+                        return;
+                    } catch (Exception e) {
+                    }
+                }
+            }else {
+                doAdd();
+            }
+
+
+    }
+
+    private void doAdd(){
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 
-        ReservationDTO reservationDTO = new ReservationDTO(pcname, id, Integer.toString(pc_reservation_seat), sdf.format(cal.getTime()), 1);
+        ReservationDTO reservationDTO = new ReservationDTO(pcname, id, Integer.toString(pc_reservation_seat),
+                sdf.format(cal.getTime()), 1, myuid);
 
-        db.collection("Reservation").document(id).set(reservationDTO)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
+        db.collection("Reservation")
+                .add( reservationDTO )
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
-                    public void onSuccess(Void aVoid) {
+                    public void onSuccess(DocumentReference documentReference) {
+
                         Toast.makeText(getApplicationContext(), "예약이 되었습니다", Toast.LENGTH_SHORT).show();
                     }
-                }).
-                addOnFailureListener(new OnFailureListener() {
+                })
+                .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(getApplicationContext(), "예약에 실패하였습니다.", Toast.LENGTH_SHORT).show();
@@ -204,7 +229,22 @@ public class ReservationActivity extends AppCompatActivity {
                 });
     }
 
-
+    private void doDelete(){
+        db.collection("Reservation").whereEqualTo("pcname", pcname).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(DocumentSnapshot snapshot : queryDocumentSnapshots){
+                    ReservationDTO reservationDTO = snapshot.toObject(ReservationDTO.class);
+                    if(id.equals(reservationDTO.getId())){
+                        String documentID = snapshot.getId();
+                        db.collection("Reservation").document(documentID).delete();
+                        Log.e("delete", "삭제 성공");
+                        return;
+                    }
+                }
+            }
+        });
+    }
 
     // 뒤로가기 버튼 누를 시에 이벤트 동작
     @Override
