@@ -50,7 +50,7 @@
                 android:fontFamily="@font/jua_regular"
                 android:text="등록일"
                 android:textColor="@android:color/white"
-                android:textSize="18sp" />
+                android:textSize="14sp" />
         </LinearLayout>
 
     </LinearLayout>

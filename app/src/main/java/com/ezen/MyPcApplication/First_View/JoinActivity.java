@@ -53,7 +53,6 @@ public class JoinActivity extends AppCompatActivity {
 
     String email;
     String password;
-    String phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,31 +82,6 @@ public class JoinActivity extends AppCompatActivity {
         member_repw = repw_input_layout.getEditText();
         member_repw.setTypeface(Typeface.DEFAULT);  // 폰트 꺠짐 방지
         member_repw.setTransformationMethod(new PasswordTransformationMethod());
-        member_repw.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // 입력되는 텍스트에 변화가 있을 때
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable arg0) {
-                // 입력이 끝났을 때
-                pw_check = findViewById(R.id.pw_check);
-                if(member_repw.getText().toString().equals(member_pw.getText().toString())){
-                    pw_check.setTextColor(Color.GREEN);
-                    pw_check.setText("비밀번호가 일치합니다.");
-                } else {
-                    pw_check.setTextColor(Color.RED);
-                    pw_check.setText("비밀번호가 일치하지 않습니다.");
-                }
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // 입력하기 전에
-            }
-        });
 
         // 핸드폰 번호 텍스트
         phone_input_layout = findViewById(R.id.phone_input_layout);
@@ -140,22 +114,33 @@ public class JoinActivity extends AppCompatActivity {
             return;
         }
 
-        if (member_phone.getText().toString().length() == 13 ||
-                !member_phone.getText().toString().contains("-")) {
-            Toast.makeText(this, "전화번호를 형식에 맞게 입력하세요", Toast.LENGTH_SHORT).show();
+        if (member_repw == null || member_repw.getText().toString().length() < 1) {
+            Toast.makeText(this, "비밀번호를 입력하세요", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (member_phone.getText().toString().length() != 11 ||
+                member_phone.getText().toString().contains("-")) {
+            Toast.makeText(this, "전화번호를 다시 입력해주세요", Toast.LENGTH_SHORT).show();
             return;
         }
 
         // 회원가입
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            doAdd();
+        if(member_pw.getText().toString().equals(member_repw.getText().toString())) {
+            firebaseAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                doAdd();
+                            }
                         }
-                    }
-                });
+                    });
+        } else {
+            pw_check.setTextColor(Color.RED);
+            pw_check.setText("비밀번호가 일치하지 않습니다.");
+        }
+
     }
 
 // DB collection에 저장

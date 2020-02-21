@@ -75,6 +75,8 @@ public class FirstActivity extends AppCompatActivity {
         btn_join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                id_edit_input.setText("");
+                pw_edit_input.setText("");
                 Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
                 startActivity(intent);
             }

@@ -97,6 +97,7 @@ public class Pc_Review_TabFragment extends Fragment {
                     Pc_Review_AdapterItem adapterItem = snapshots.toObject(Pc_Review_AdapterItem.class);
                     pc_review_adapter.addItem(new Pc_Review_AdapterItem(adapterItem.getName(), adapterItem.getDate(), adapterItem.getComments(), R.drawable.user));
                 }
+                pc_review_adapter.Reverse();
 
                 pc_review_adapter.notifyDataSetChanged(); // 부분 갱신
 
@@ -123,6 +124,7 @@ public class Pc_Review_TabFragment extends Fragment {
         if(requestCode == 100 && data != null){
             comments = data.getStringExtra("listUpdate");
             pc_review_adapter.addItem(new Pc_Review_AdapterItem(name, date, comments, R.drawable.user));
+            pc_review_adapter.Reverse();
             pc_review_adapter.notifyDataSetChanged(); // 부분 갱신
             doAdd();
 

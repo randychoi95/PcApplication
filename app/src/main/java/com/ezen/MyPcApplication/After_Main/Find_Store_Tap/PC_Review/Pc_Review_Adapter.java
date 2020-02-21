@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ezen.MyPcApplication.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 // 제네릭으로 타입을 추가함.
 public class Pc_Review_Adapter extends RecyclerView.Adapter<Pc_Review_Adapter.ViewHolder> {
@@ -34,14 +37,11 @@ public class Pc_Review_Adapter extends RecyclerView.Adapter<Pc_Review_Adapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Pc_Review_AdapterItem item = items.get(position);
         holder.setItem(item);
+    }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Toast.makeText(context, position + "번째 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
+    // 리스트 최신날짜순으로 정렬
+    public void Reverse(){
+        Collections.reverse(items);
     }
 
     @Override

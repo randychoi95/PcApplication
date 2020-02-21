@@ -1,6 +1,5 @@
 package com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.PC_Member;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,18 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ezen.MyPcApplication.First_View.FindPwActivity;
 import com.ezen.MyPcApplication.R;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 public class PcRoomPwFindActivity extends AppCompatActivity {
@@ -35,7 +28,8 @@ public class PcRoomPwFindActivity extends AppCompatActivity {
     Button button_cancel;
 
     FirebaseFirestore db;
-    String email;
+    String pc_id;
+    String pcname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +39,12 @@ public class PcRoomPwFindActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
+        Intent intent = getIntent();
+        pcname = intent.getStringExtra("pcname");
+
         name_edit = findViewById(R.id.name_edit);
         id_edit = findViewById(R.id.id_edit);
         phone_edit = findViewById(R.id.phone_edit);
-
 
        // 비밀번호 찾기 확인버튼
         button_ok = findViewById(R.id.find_btn_ok);
@@ -65,6 +61,10 @@ public class PcRoomPwFindActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PcRoomLoginActivity.class);
+                intent.putExtra("name", pcname);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK   |
+                        Intent.FLAG_ACTIVITY_SINGLE_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
@@ -74,10 +74,10 @@ public class PcRoomPwFindActivity extends AppCompatActivity {
     private void findPcPW() {
 
         String name = name_edit.getText().toString();
-        String id = id_edit.getText().toString();
+        pc_id = id_edit.getText().toString();
         String phone = phone_edit.getText().toString();
 
-        db.collection("PcMember").whereEqualTo("name", name).whereEqualTo("id", id).whereEqualTo("phone", phone)
+        db.collection("PcMember").whereEqualTo("pcname", pcname).whereEqualTo("name", name).whereEqualTo("id", pc_id).whereEqualTo("phone", phone)
                 .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -87,7 +87,10 @@ public class PcRoomPwFindActivity extends AppCompatActivity {
                 } else {
 
                     Intent intent = new Intent(getApplicationContext(), PcRoomPwResetActivity.class);
+                    intent.putExtra("name", pcname);
+                    intent.putExtra("id", pc_id);
                     startActivity(intent);
+                    finish();
 
                     Toast.makeText(PcRoomPwFindActivity.this, "PC방 비밀번호를 다시 설정하세요.", Toast.LENGTH_LONG).show();
 

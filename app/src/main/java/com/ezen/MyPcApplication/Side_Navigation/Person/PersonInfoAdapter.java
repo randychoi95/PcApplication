@@ -16,13 +16,18 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.PC_Member.PcMemberDTO;
 import com.ezen.MyPcApplication.After_Main.MainActivity;
 import com.ezen.MyPcApplication.First_View.FirstActivity;
 import com.ezen.MyPcApplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -35,6 +40,7 @@ public class PersonInfoAdapter extends RecyclerView.Adapter<PersonInfoAdapter.Vi
 
     FirebaseAuth auth = FirebaseAuth.getInstance();  // 파이어베이스 인증
     FirebaseUser currentUser = auth.getCurrentUser(); // 현재 사용자의 계정 데이타
+    FirebaseFirestore db;
 
     Person_InfoFragment person_infoFragment;
 
@@ -70,13 +76,6 @@ public class PersonInfoAdapter extends RecyclerView.Adapter<PersonInfoAdapter.Vi
                     Toast.makeText(v.getContext(), position + "번째", Toast.LENGTH_SHORT).show();
                 } else if(position == 1) {
                     showDialog();
-//                    currentUser.delete(); // 계정 삭제
-//                    auth.signOut();
-//
-//                    Intent intent = new Intent(itemView.getContext(), FirstActivity.class);
-//                    listener.setClick(intent);
-//
-//                    Toast.makeText(v.getContext(), position + "회원 탈퇴 되었습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -129,10 +128,18 @@ public class PersonInfoAdapter extends RecyclerView.Adapter<PersonInfoAdapter.Vi
                         });
                 auth.signOut();
 
-                Intent intent = new Intent(itemView.getContext(), FirstActivity.class);
-                listener.setClick(intent);
+                doDelete();
 
-                Toast.makeText(person_infoFragment.getContext(), "회원 탈퇴 되었습니다.", Toast.LENGTH_SHORT).show();
+                try{
+                    Thread.sleep(2000);
+                    Intent intent = new Intent(itemView.getContext(), FirstActivity.class);
+                    listener.setClick(intent);
+
+                    Toast.makeText(person_infoFragment.getContext(), "회원 탈퇴 되었습니다.", Toast.LENGTH_SHORT).show();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
             }
         });
 
@@ -152,6 +159,22 @@ public class PersonInfoAdapter extends RecyclerView.Adapter<PersonInfoAdapter.Vi
                 alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK); } });
 
         alertDialog.show();
+    }
+
+    private void doDelete(){
+        db = FirebaseFirestore.getInstance();
+
+        db.collection("Member").whereEqualTo("uid", currentUser.getUid()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(DocumentSnapshot snapshot : queryDocumentSnapshots){
+                        String documentID = snapshot.getId();
+                        db.collection("Member").document(documentID).delete();
+                        Log.e("delete", "삭제 성공");
+                        return;
+                }
+            }
+        });
     }
 
 

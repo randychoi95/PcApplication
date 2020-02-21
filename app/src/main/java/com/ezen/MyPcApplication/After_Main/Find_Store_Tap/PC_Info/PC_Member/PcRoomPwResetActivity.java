@@ -5,8 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,91 +21,163 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.TimeZone;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class PcRoomPwResetActivity extends AppCompatActivity {
+    static List<PcMemberDTO> pcMemberDTOS = new ArrayList<PcMemberDTO>();
+    PcMemberDTO singleMemberDTO;
 
-    FirebaseFirestore db;
-    FirebaseUser currentUser;
-    FirebaseAuth auth;
-//    TextInputLayout password_input;
-//    TextInputLayout password_input2;
+    TextInputLayout password_input;
+    TextInputLayout password_input2;
+
     EditText password_edit;
     EditText password_edit2;
-    String password;
-//    String email = currentUser.getEmail();
-    Button button_ok;
-    Button button_cancel;
 
+    TextView pwCheck;
+
+    FirebaseFirestore db;
+
+    String pcname;
+    String pc_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pc_room_pw_reset);
 
-        auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        db.collection("PcMember")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            // 리스트 가져오기 성공
+                            pcMemberDTOS = task.getResult().toObjects(PcMemberDTO.class);
+                        } else {
+                            // 리스트 가져오기 실패
+                            Log.e("Activity", "리스트 가져오기 실패");
+                        }
+                    }
+                });
 
+        Intent intent = getIntent();
+        pcname = intent.getStringExtra("name");
+        pc_id = intent.getStringExtra("id");
 
-        Button button_ok = findViewById(R.id.find_btn_ok);
-        button_ok.setOnClickListener(new View.OnClickListener() {
+        password_input = findViewById(R.id.password_input);
+        password_input2 = findViewById(R.id.password_input2);
+
+        password_edit = password_input.getEditText();
+        password_edit.setTypeface(Typeface.DEFAULT);  // 폰트 꺠짐 방지
+        password_edit.setTransformationMethod(new PasswordTransformationMethod());
+
+        password_edit2 = password_input2.getEditText();
+        password_edit2.setTypeface(Typeface.DEFAULT);  // 폰트 꺠짐 방지
+        password_edit2.setTransformationMethod(new PasswordTransformationMethod());
+
+        pwCheck = findViewById(R.id.pwCheck);
+
+        Button find_btn_ok = findViewById(R.id.find_btn_ok);
+        find_btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                doAdd();
+                doReset();
             }
         });
 
-
-        // 비밀번호 입력하는거 두개 변수선언
-
-        password_edit = findViewById(R.id.password_edit);
-
-        password_edit2 = findViewById(R.id.password_edit2);
-        // 일치하면 테이블에 들어가는 함수 생성호출
-
-        if( password_edit == password_edit2 ){
-
-        }
+        // 비밀번호 찾기 취소 버튼
+        Button button_cancel = findViewById(R.id.find_btn_cancel);
+        button_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }//oncreate
 
-    private void doAdd(){
+    public void doReset(){
 
-        // 비밀번호 변수선언
-        String pw = password_edit.getText().toString();
-        String pw2 = password_edit2.getText().toString();
 
-        // DTO가서 비밀번호만 있는 생성자 만들고
+        for(int i=0; i<pcMemberDTOS.size(); i++){
+            if(pc_id.equals(pcMemberDTOS.get(i).getId())){
+                singleMemberDTO = pcMemberDTOS.get(i);
+                break;
+            }
+        }
 
-        // 생성자로 비밀번호만 들어가게 만들어주고
+        doDelete();
 
-        PcMemberDTO userDTO = new PcMemberDTO(/* q비밀번호 변수*/);
+        if (password_edit == null || password_edit.getText().toString().length() < 6) {
+            Toast.makeText(this, "비밀번호 6자리 이상 입력하세요", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        //add()함수를 사용하면, auto ID가 자동으로 발급됨.
-//        String autoID = db.collection("users").document().getId();
-        db.collection("PcMember")
-                .add(userDTO)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.e("Activity", "DB쓰기 성공: "+ documentReference.getId() );
+        try{
+            Thread.sleep(500);
+            pwConvert();
+        } catch(Exception e){}
 
+    }
+
+    private void pwConvert(){
+        if(password_edit.getText().toString().equals(password_edit2.getText().toString())){
+            String pw = password_edit.getText().toString();
+
+            PcMemberDTO pcMemberDTO = new PcMemberDTO(singleMemberDTO.getName(), singleMemberDTO.getId(), pw, singleMemberDTO.getBirth(), singleMemberDTO.getPhone(), singleMemberDTO.getUid(),
+                    singleMemberDTO.getEmail(), pcname);
+
+            //add()함수를 사용하면, auto ID가 자동으로 발급됨.
+            db.collection("PcMember")
+                    .add( pcMemberDTO )
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Log.e("Activity", "DB쓰기 성공:" + documentReference.getId() );
+                            Intent intent = new Intent(getApplicationContext(), PcRoomLoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK   |
+                                    Intent.FLAG_ACTIVITY_SINGLE_TOP |
+                                    Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e("Activity", "DB쓰기 실패:" + e );
+                        }
+                    });
+
+        } else {
+            pwCheck.setTextColor(Color.RED);
+            pwCheck.setText("비밀번호가 일치하지 않습니다.");
+        }
+    }
+
+    private void doDelete(){
+        db.collection("PcMember").whereEqualTo("id", pc_id).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(DocumentSnapshot snapshot : queryDocumentSnapshots){
+                    PcMemberDTO pcMemberDTO = snapshot.toObject(PcMemberDTO.class);
+                    if(pcname.equals(pcMemberDTO.getPcname())){
+                        String documentID = snapshot.getId();
+                        db.collection("PcMember").document(documentID).delete();
+                        Log.e("delete", "삭제 성공");
+                        return;
                     }
-                })
-                .addOnFailureListener(new OnFailureListener(){
-                    @Override
-                    public void onFailure(@NonNull Exception e){
-                        Log.e("Activity","DB쓰기 실패: " + e);
-                    }
-                });
-    }//doAdd
+                }
+            }
+        });
+    }
 
 }//class

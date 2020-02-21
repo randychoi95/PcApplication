@@ -61,11 +61,15 @@ public class PcRoomJoinActivity extends AppCompatActivity {
     String password;
     String birth;
     String phone;
+    String pcname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pc_room_join);
+
+        Intent intent = getIntent();
+        pcname = intent.getStringExtra("name");
 
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -148,13 +152,13 @@ public class PcRoomJoinActivity extends AppCompatActivity {
                 if (checkBirth()) {
                     birth_check = findViewById(R.id.birth_check);
                     birth_check.setText("");
-                    if (userPhone.getText().toString().length() == 13 ||
+                    if (userPhone.getText().toString().length() == 11 &&
                             !userPhone.getText().toString().contains("-")) {
                         checkId();
                     } else {
                         phone_check = findViewById(R.id.phone_check);
                         phone_check.setTextColor(Color.RED);
-                        phone_check.setText("13자리가 아니거나 '-'빼고 입력해주세요.");
+                        phone_check.setText("전화번호를 다시 입력해주세요");
                     }
                 } else {
                     birth_check = findViewById(R.id.birth_check);
@@ -185,10 +189,12 @@ public class PcRoomJoinActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         List<PcMemberDTO> pcMemberDTOList = task.getResult().toObjects(PcMemberDTO.class);
-                        for(PcMemberDTO pcMemberDTO : pcMemberDTOList){
-                            if(pcMemberDTO.getId().equals(checkId)) {
-                                Toast.makeText(getApplicationContext(), "중복된 아이디입니다.", Toast.LENGTH_SHORT).show();
-                                return;
+                        for(PcMemberDTO pcMemberDTO : pcMemberDTOList) {
+                            if (pcMemberDTO.getPcname().equals(pcname)) {
+                                if (pcMemberDTO.getId().equals(checkId)) {
+                                    Toast.makeText(getApplicationContext(), "중복된 아이디입니다.", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
                             }
                         }
                         doAdd();
@@ -225,23 +231,35 @@ public class PcRoomJoinActivity extends AppCompatActivity {
         String uid = currentUser.getUid();
         String email = currentUser.getEmail();
 
-        Intent intent = getIntent();
-        String pcname = intent.getStringExtra("name");
-
-
         PcMemberDTO pcMemberDTO = new PcMemberDTO(name, id, pw, birth, phone, uid, email, pcname);
 
-        db.collection("PcMember").document(id).set(pcMemberDTO)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//        db.collection("PcMember").document(id).set(pcMemberDTO)
+//                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void aVoid) {
+//                        Log.e("Activity", "DB쓰기 성공");
+//                    }
+//                }).
+//                addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.e("Activity", "DB쓰기 실패:" + e);
+//                    }
+//                });
+
+        //add()함수를 사용하면, auto ID가 자동으로 발급됨.
+        db.collection("PcMember")
+                .add( pcMemberDTO )
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.e("Activity", "DB쓰기 성공");
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.e("Activity", "DB쓰기 성공:" + documentReference.getId() );
                     }
-                }).
-                addOnFailureListener(new OnFailureListener() {
+                })
+                .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e("Activity", "DB쓰기 실패:" + e);
+                        Log.e("Activity", "DB쓰기 실패:" + e );
                     }
                 });
     }

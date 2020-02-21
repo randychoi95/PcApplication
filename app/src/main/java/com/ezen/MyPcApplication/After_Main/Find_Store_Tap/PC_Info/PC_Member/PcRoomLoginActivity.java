@@ -14,13 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.PC_Reservation.ReservationActivity;
-import com.ezen.MyPcApplication.First_View.FindPwActivity;
 import com.ezen.MyPcApplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -49,14 +46,30 @@ public class PcRoomLoginActivity extends AppCompatActivity {
     EditText pcroom_pw_edit;
 
     // firebase 관련
-    FirebaseAuth firebaseAuth;
     FirebaseFirestore db;
-    FirebaseUser currentUser;
 
     // 피시방 이름 변수
     String pcname;
 
-;
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        db = FirebaseFirestore.getInstance();
+        db.collection("PcMember")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            // 리스트 가져오기 성공
+                            pcMemberDTOS = task.getResult().toObjects(PcMemberDTO.class);
+                        } else {
+                            // 리스트 가져오기 실패
+                            Log.e("Activity", "리스트 가져오기 실패");
+                        }
+                    }
+                });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +77,7 @@ public class PcRoomLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pc_room_login);
 
         // firebase 정보 가져오기
-        firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        currentUser = firebaseAuth.getCurrentUser();
 
         // 생성 시 피시방 회원 테이블 가져오기
         db.collection("PcMember")
@@ -121,9 +132,9 @@ public class PcRoomLoginActivity extends AppCompatActivity {
         btn_Pcjoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(getApplicationContext(), PcRoomJoinActivity.class);
-                intent2.putExtra("name", pcname);
-                startActivity(intent2);
+                Intent intent = new Intent(getApplicationContext(), PcRoomJoinActivity.class);
+                intent.putExtra("name", pcname);
+                startActivity(intent);
             }
         });
 
@@ -133,6 +144,7 @@ public class PcRoomLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PcRoomIdFindActivity.class);
+                intent.putExtra("pcname", pcname);
                 startActivity(intent);
             }
         });
@@ -144,6 +156,7 @@ public class PcRoomLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PcRoomPwFindActivity.class);
+                intent.putExtra("pcname", pcname);
                 startActivity(intent);
             }
         });
@@ -164,7 +177,7 @@ public class PcRoomLoginActivity extends AppCompatActivity {
 
         // pc방 아이디가 있으면 singleMemberDTO에 저장하고 idflag 1로 지정, 아니면 idflag 0으로 지정
         for (int i = 0; i < pcMemberDTOS.size(); i++) {
-            if (pcMemberDTOS.get(i).getId().equals(pcroom_id_edit.getText().toString())) {
+            if (pcMemberDTOS.get(i).getPcname().equals(pcname) && pcMemberDTOS.get(i).getId().equals(pcroom_id_edit.getText().toString())) {
                 singleMemberDTO = pcMemberDTOS.get(i);
                 idflag = 1;
                 break;
@@ -173,6 +186,8 @@ public class PcRoomLoginActivity extends AppCompatActivity {
             }
         }
 
+        Log.e("id", singleMemberDTO.getId());
+        Log.e("id", singleMemberDTO.getPw());
         // pc방 아이디가 있으면
         if (idflag == 1) {
             // 아이디 비밀번호가 맞으면
