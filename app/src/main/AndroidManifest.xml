@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/gamingchair"
+        android:icon="@drawable/applogo"
         android:label="PSeat"
-        android:roundIcon="@drawable/gamingchair"
+        android:roundIcon="@drawable/applogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".First_View.FindIdActivity"  android:theme="@style/AppTheme.NoActionBar" ></activity>
