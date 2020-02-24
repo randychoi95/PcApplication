@@ -31,9 +31,11 @@ import com.ezen.MyPcApplication.Side_Navigation.Reservation.Reservation_CheckFra
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.pedro.library.AutoPermissions;
+import com.pedro.library.AutoPermissionsListener;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, FragmentCallback {
+        implements NavigationView.OnNavigationItemSelectedListener, FragmentCallback, AutoPermissionsListener {
 
     HomeFragment fragment_home;
     StoreFragment storeFragment;
@@ -54,6 +56,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Permission
+        AutoPermissions.Companion.loadAllPermissions(this, 100);
 
         // firebase
         firebaseAuth = FirebaseAuth.getInstance();
@@ -189,4 +194,32 @@ public class MainActivity extends AppCompatActivity
             .setCancelable(false)//백버튼으로 팝업창이 닫히지 않도록 한다.
             .show();
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        AutoPermissions.Companion.parsePermissions(this, requestCode, permissions, this);
+    }
+
+    @Override
+    public void onDenied(int requestCode, String[] permissions) {
+        StringBuilder sb = new StringBuilder();
+        for( String permission : permissions) {
+            sb.append( permission );
+            sb.append( "," );
+        }
+        Toast.makeText(this, sb.toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onGranted(int requestCode, String[] permissions) {
+        StringBuilder sb = new StringBuilder();
+        for( String permission : permissions) {
+            sb.append( permission );
+            sb.append( "," );
+        }
+        Toast.makeText(this, sb.toString(), Toast.LENGTH_SHORT).show();
+    }
+
 }

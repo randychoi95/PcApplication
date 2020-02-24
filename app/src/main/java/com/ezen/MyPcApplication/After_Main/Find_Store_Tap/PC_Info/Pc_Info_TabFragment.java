@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -162,6 +161,7 @@ public class Pc_Info_TabFragment extends Fragment
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(SEOUL)); // 구글맵 카메라 위치
         googleMap.animateCamera(CameraUpdateFactory.zoomTo(18)); // 구글맵 줌
     }
+
 
     @Override
     public void onAttach(Context context) {

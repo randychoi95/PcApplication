@@ -60,9 +60,6 @@ public class Reservation_CheckFragment extends Fragment {
                 list_reservation.setAdapter(reservationCheckAdapter);
             }
         });
-//        Log.e("items.seat", reservationCheckAdapter.items.get(0).getSeat());
-
-
         return rootView;
     }
 
