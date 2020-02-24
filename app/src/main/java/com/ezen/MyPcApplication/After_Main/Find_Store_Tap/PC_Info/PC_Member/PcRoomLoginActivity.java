@@ -210,6 +210,7 @@ public class PcRoomLoginActivity extends AppCompatActivity {
                         intent.putExtra("id", id);
                         intent.putExtra("uid", uid);
                         startActivity(intent);
+                        finish();
                         Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                     }
                 // 해당 pc방 회원 x

@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.Pc_Info_TabActivity;
 import com.ezen.MyPcApplication.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -251,6 +252,11 @@ public class ReservationActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:{ //toolbar의 back키 눌렀을 때 동작
+                Intent intent = new Intent(getApplicationContext(), Pc_Info_TabActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK   |
+                        Intent.FLAG_ACTIVITY_SINGLE_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 finish();
             }
         }
