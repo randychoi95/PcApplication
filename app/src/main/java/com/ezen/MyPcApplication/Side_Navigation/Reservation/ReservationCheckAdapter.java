@@ -54,17 +54,20 @@ public class ReservationCheckAdapter extends RecyclerView.Adapter<ReservationChe
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView date_content;
+        TextView pcname_content;
         TextView reservation_content;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             date_content = itemView.findViewById(R.id.date_content);
+            pcname_content = itemView.findViewById(R.id.pcname_content);
             reservation_content = itemView.findViewById(R.id.reservation_content);
         }
 
         public void setItem(Reservation_CheckDTO item){
 
             date_content.setText(item.getDate());
+            pcname_content.setText(item.getPcname());
             reservation_content.setText(item.getSeat());
         }
     }

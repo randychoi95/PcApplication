@@ -32,9 +32,15 @@ public class Pay_CheckFragment extends Fragment {
 
         // 아답터 클래스 생성
         payCheckAdapter = new PayCheckAdapter();
-        payCheckAdapter.addItem(new PayCheckItem("2020.02.05", "1000"));
-        payCheckAdapter.addItem(new PayCheckItem("2020.02.05", "1000"));
-        payCheckAdapter.addItem(new PayCheckItem("2020.02.05", "1000"));
+        payCheckAdapter.addItem(new PayCheckItem("2020.02.23", "6,800"));
+        payCheckAdapter.addItem(new PayCheckItem("2020.02.19", "12,000"));
+        payCheckAdapter.addItem(new PayCheckItem("2020.02.15", "3,000"));
+        payCheckAdapter.addItem(new PayCheckItem("2020.02.11", "5,500"));
+        payCheckAdapter.addItem(new PayCheckItem("2020.02.07", "7,800"));
+        payCheckAdapter.addItem(new PayCheckItem("2020.02.04", "3,000"));
+        payCheckAdapter.addItem(new PayCheckItem("2020.01.23", "1,000"));
+        payCheckAdapter.addItem(new PayCheckItem("2020.01.22", "9,800"));
+        payCheckAdapter.addItem(new PayCheckItem("2020.01.19", "3,200"));
 
         list_pay.setAdapter(payCheckAdapter);
 

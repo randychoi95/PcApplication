@@ -18,9 +18,20 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_weight="1"
             android:fontFamily="@font/jua_regular"
+            android:gravity="left"
             android:text="예약한 날짜"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/pcname_content"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/jua_regular"
+            android:gravity="left"
+            android:text="예약한 피시방"
             android:textSize="18sp" />
 
         <TextView
@@ -29,9 +40,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_weight="1"
             android:fontFamily="@font/jua_regular"
-            android:text="예약 자리 번호" />
+            android:gravity="center"
+            android:text="예약 자리 번호"
+            android:textSize="18sp" />
     </LinearLayout>
 
 </LinearLayout>
