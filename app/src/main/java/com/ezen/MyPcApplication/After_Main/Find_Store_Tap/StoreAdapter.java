@@ -52,8 +52,6 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         holder.setItem(item);
 
 
-
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +62,8 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
                 intent.putExtra("cpu", items.get(position).getCpu());
                 intent.putExtra("ram", items.get(position).getRam());
                 intent.putExtra("vga", items.get(position).getVga());
+                intent.putExtra("latitude", items.get(position).getLatitude());
+                intent.putExtra("longitude", items.get(position).getLongitude());
                 listener.setClick(intent);
                 
             }
