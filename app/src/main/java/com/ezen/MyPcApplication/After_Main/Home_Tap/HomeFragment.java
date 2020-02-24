@@ -1,6 +1,7 @@
 package com.ezen.MyPcApplication.After_Main.Home_Tap;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,7 @@ import com.rd.PageIndicatorView;
 import com.rd.animation.type.AnimationType;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements Home_Pager_Adapter.setClickListener {
 
     MainActivity mainActivity;
 
@@ -51,7 +52,7 @@ public class HomeFragment extends Fragment {
         // 아까 만든 viewPager
         viewPager = (ViewPager)rootView.findViewById(R.id.pager);
         // adapter 초기화
-        adapter = new Home_Pager_Adapter(getContext());
+        adapter = new Home_Pager_Adapter(getContext(), this);
         // adapter 연결
         viewPager.setAdapter(adapter);
 
@@ -77,5 +78,9 @@ public class HomeFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void setClick(Intent intent) {
+        startActivity(intent);
+    }
 
 }
