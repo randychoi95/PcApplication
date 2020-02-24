@@ -51,6 +51,7 @@ public class PcRoomLoginActivity extends AppCompatActivity {
     // 피시방 이름 변수
     String pcname;
 
+    // 재시작할 때 정보 가져오기
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -139,6 +140,7 @@ public class PcRoomLoginActivity extends AppCompatActivity {
         });
 
 
+        // 아이디 찾기
         TextView text_findID = findViewById(R.id.text_findID);
         text_findID.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,8 +151,7 @@ public class PcRoomLoginActivity extends AppCompatActivity {
             }
         });
 
-
-
+        // 비밀번호 찾기
         TextView text_findPW = findViewById(R.id.text_findPW);
         text_findPW.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,9 +162,10 @@ public class PcRoomLoginActivity extends AppCompatActivity {
             }
         });
 
-    }
+    }// onCreate
 
 
+    // pc방 로그인 메소드
     public void doPclogin() {
         //예외처리
         if (pcroom_id_edit == null || pcroom_id_edit.getText().toString().length() < 1) {
@@ -186,8 +188,6 @@ public class PcRoomLoginActivity extends AppCompatActivity {
             }
         }
 
-        Log.e("id", singleMemberDTO.getId());
-        Log.e("id", singleMemberDTO.getPw());
         // pc방 아이디가 있으면
         if (idflag == 1) {
             // 아이디 비밀번호가 맞으면
@@ -224,7 +224,7 @@ public class PcRoomLoginActivity extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(), "회원이 아니거나 다시 입력해주세요", Toast.LENGTH_SHORT).show();
         }
-    }
+    }// doPclogin
 
 
     // 청소년 제한시간 체크
@@ -245,7 +245,7 @@ public class PcRoomLoginActivity extends AppCompatActivity {
         } else {
             boolflag = true;
         }
-    }
+    }// doCheckBirth
 
     // 뒤로가기 버튼 누를 시에 이벤트 동작
     @Override

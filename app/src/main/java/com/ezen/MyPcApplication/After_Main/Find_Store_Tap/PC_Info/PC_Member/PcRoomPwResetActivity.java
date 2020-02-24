@@ -28,8 +28,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class PcRoomPwResetActivity extends AppCompatActivity {
     static List<PcMemberDTO> pcMemberDTOS = new ArrayList<PcMemberDTO>();
@@ -53,6 +51,7 @@ public class PcRoomPwResetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pc_room_pw_reset);
 
+        // firebase
         db = FirebaseFirestore.getInstance();
         db.collection("PcMember")
                 .get()
@@ -69,6 +68,7 @@ public class PcRoomPwResetActivity extends AppCompatActivity {
                     }
                 });
 
+        // 이름 아이디 정보 가져오기
         Intent intent = getIntent();
         pcname = intent.getStringExtra("name");
         pc_id = intent.getStringExtra("id");
@@ -86,6 +86,7 @@ public class PcRoomPwResetActivity extends AppCompatActivity {
 
         pwCheck = findViewById(R.id.pwCheck);
 
+        // 확인 버튼
         Button find_btn_ok = findViewById(R.id.find_btn_ok);
         find_btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,9 +106,8 @@ public class PcRoomPwResetActivity extends AppCompatActivity {
 
     }//oncreate
 
+    // 비밀번호 재설정 메소드
     public void doReset(){
-
-
         for(int i=0; i<pcMemberDTOS.size(); i++){
             if(pc_id.equals(pcMemberDTOS.get(i).getId())){
                 singleMemberDTO = pcMemberDTOS.get(i);
@@ -127,8 +127,9 @@ public class PcRoomPwResetActivity extends AppCompatActivity {
             pwConvert();
         } catch(Exception e){}
 
-    }
+    }// doReset
 
+    // db에 재설정된 비밀번호 저장
     private void pwConvert(){
         if(password_edit.getText().toString().equals(password_edit2.getText().toString())){
             String pw = password_edit.getText().toString();
@@ -161,8 +162,9 @@ public class PcRoomPwResetActivity extends AppCompatActivity {
             pwCheck.setTextColor(Color.RED);
             pwCheck.setText("비밀번호가 일치하지 않습니다.");
         }
-    }
+    }// pwConvert
 
+    // 기존에 있던 정보 삭제
     private void doDelete(){
         db.collection("PcMember").whereEqualTo("id", pc_id).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override

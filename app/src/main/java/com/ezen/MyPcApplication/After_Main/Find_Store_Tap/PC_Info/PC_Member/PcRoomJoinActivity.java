@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +25,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
@@ -68,9 +66,11 @@ public class PcRoomJoinActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pc_room_join);
 
+        // pc방 이름 찾기
         Intent intent = getIntent();
         pcname = intent.getStringExtra("name");
 
+        // firebase
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
@@ -99,6 +99,7 @@ public class PcRoomJoinActivity extends AppCompatActivity {
         pcroom_userPhone_input = findViewById(R.id.pcroom_userPhone_input);
         userPhone = pcroom_userPhone_input.getEditText();
 
+        // 회원가입 버튼
         Button btn_Pcjoin = findViewById(R.id.btn_Pcjoin);
         btn_Pcjoin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,7 +203,7 @@ public class PcRoomJoinActivity extends AppCompatActivity {
                         finish();
                     }
                 });
-    }
+    }// checkId
 
     // 생년월일 체크
     private Boolean checkBirth() {
@@ -219,7 +220,7 @@ public class PcRoomJoinActivity extends AppCompatActivity {
         }
 
         return false;
-    }
+    }// checkBirth
 
     // firebase database에 추가
     private void doAdd(){
@@ -233,21 +234,6 @@ public class PcRoomJoinActivity extends AppCompatActivity {
 
         PcMemberDTO pcMemberDTO = new PcMemberDTO(name, id, pw, birth, phone, uid, email, pcname);
 
-//        db.collection("PcMember").document(id).set(pcMemberDTO)
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-//                        Log.e("Activity", "DB쓰기 성공");
-//                    }
-//                }).
-//                addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.e("Activity", "DB쓰기 실패:" + e);
-//                    }
-//                });
-
-        //add()함수를 사용하면, auto ID가 자동으로 발급됨.
         db.collection("PcMember")
                 .add( pcMemberDTO )
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -262,6 +248,6 @@ public class PcRoomJoinActivity extends AppCompatActivity {
                         Log.e("Activity", "DB쓰기 실패:" + e );
                     }
                 });
-    }
+    }// doAdd
 
 } // class

@@ -1,28 +1,22 @@
 package com.ezen.MyPcApplication.After_Main.Find_Store_Tap;
 
-import android.app.Application;
-import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.Pc_Info_TabActivity;
-import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Review.Pc_Review_TabFragment;
 import com.ezen.MyPcApplication.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 // 제네릭으로 타입을 추가함.
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> {

@@ -2,10 +2,7 @@ package com.ezen.MyPcApplication.After_Main.Find_Store_Tap;
 
 import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +23,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -87,24 +83,8 @@ public class StoreFragment extends Fragment implements StoreAdapter.setClickList
         });
 
         editText = rootView.findViewById(R.id.edit_search);
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if(editText.length() == 0)
-                    list_pc.setAdapter(storeAdapter);
-            }
-        });
-
+        // 검색 버튼
         Button btn_search = rootView.findViewById(R.id.btn_search);
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +93,6 @@ public class StoreFragment extends Fragment implements StoreAdapter.setClickList
                 doSearch(text);
             }
         });
-
 
         return rootView;
     }
@@ -129,8 +108,6 @@ public class StoreFragment extends Fragment implements StoreAdapter.setClickList
         if (text.length() == 0) {
             Toast.makeText(getContext(), "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show();
         }
-
-
         db.collection("PcRoom")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -153,11 +130,11 @@ public class StoreFragment extends Fragment implements StoreAdapter.setClickList
                             // 리스트 가져오기 실패
                             Log.e("Activity", "리스트 가져오기 실패");
                         }
-
-                        list_pc.setAdapter(storeAdapter);
+                        storeAdapter.notifyDataSetChanged();
                     }
 
                 });
+
     }
 
 }

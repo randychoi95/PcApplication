@@ -2,9 +2,7 @@ package com.ezen.MyPcApplication.After_Main;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -33,11 +31,11 @@ import com.ezen.MyPcApplication.Side_Navigation.Reservation.Reservation_CheckFra
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
+import com.pedro.library.AutoPermissions;
+import com.pedro.library.AutoPermissionsListener;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, FragmentCallback {
+        implements NavigationView.OnNavigationItemSelectedListener, FragmentCallback, AutoPermissionsListener {
 
     HomeFragment fragment_home;
     StoreFragment storeFragment;
@@ -59,30 +57,32 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Permission
+        AutoPermissions.Companion.loadAllPermissions(this, 100);
+
+        // firebase
         firebaseAuth = FirebaseAuth.getInstance();
 
+        // toolbar
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // drawer
         drawer = findViewById(R.id.ConstraintLayout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
+        // 기본으로 홈탭설정
         fragment_home = new HomeFragment();
-
         getSupportFragmentManager().beginTransaction().add(R.id.container, fragment_home).commit();
 
+        // 바텀네비게이션
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
                 switch (menuItem.getItemId()){
                     case R.id.tab1:
                         fragment_home = new HomeFragment();
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity
         });
 
         // 네비게이션 뷰
-        navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         View nav_header_view = navigationView.getHeaderView(0);
@@ -136,19 +136,14 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
         if(id == R.id.nav_info){
-//            Toast.makeText(this, "개인정보 메뉴가 선택됨", Toast.LENGTH_SHORT).show();
             onFragmentSelected(0, null);
         } else if(id == R.id.nav_login){
-//            Toast.makeText(this, "로그인 내역 메뉴가 선택됨", Toast.LENGTH_SHORT).show();
             onFragmentSelected(1, null);
         }else if(id == R.id.nav_pay){
-//            Toast.makeText(this, "결재 내역 메뉴가 선택됨", Toast.LENGTH_SHORT).show();
             onFragmentSelected(2, null);
         }else if(id == R.id.nav_reservation){
-//            Toast.makeText(this, "예약 내역 메뉴가 선택됨", Toast.LENGTH_SHORT).show();
             onFragmentSelected(3, null);
         }
-
         drawer.closeDrawer(GravityCompat.START);
 
         return false;
@@ -156,7 +151,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onFragmentSelected(int position, Bundle bundle) {
-
         person_infoFragment = new Person_InfoFragment();
         login_checkFragment = new Login_CheckFragment();
         pay_checkFragment = new Pay_CheckFragment();
@@ -172,10 +166,10 @@ public class MainActivity extends AppCompatActivity
         }else if (position == 3) {
             curFragment = reservation_checkFragment;
         }
-
         getSupportFragmentManager().beginTransaction().replace(R.id.container, curFragment).commit();
     }
 
+    // 로그아웃 메소드
     public void doLogout(){
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Light_Dialog);
 
@@ -200,4 +194,32 @@ public class MainActivity extends AppCompatActivity
             .setCancelable(false)//백버튼으로 팝업창이 닫히지 않도록 한다.
             .show();
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        AutoPermissions.Companion.parsePermissions(this, requestCode, permissions, this);
+    }
+
+    @Override
+    public void onDenied(int requestCode, String[] permissions) {
+        StringBuilder sb = new StringBuilder();
+        for( String permission : permissions) {
+            sb.append( permission );
+            sb.append( "," );
+        }
+        Toast.makeText(this, sb.toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onGranted(int requestCode, String[] permissions) {
+        StringBuilder sb = new StringBuilder();
+        for( String permission : permissions) {
+            sb.append( permission );
+            sb.append( "," );
+        }
+        Toast.makeText(this, sb.toString(), Toast.LENGTH_SHORT).show();
+    }
+
 }

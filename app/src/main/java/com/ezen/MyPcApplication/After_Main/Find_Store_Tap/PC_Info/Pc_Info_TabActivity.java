@@ -1,27 +1,14 @@
 package com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.PC_Member.PcRoomLoginActivity;
 import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Review.Pc_Review_TabFragment;
-import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.StoreFragment;
-import com.ezen.MyPcApplication.After_Main.Home_Tap.HomeFragment;
-import com.ezen.MyPcApplication.After_Main.MainActivity;
 import com.ezen.MyPcApplication.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Pc_Info_TabActivity extends AppCompatActivity {
 
@@ -54,9 +41,8 @@ public class Pc_Info_TabActivity extends AppCompatActivity {
         String vga = intent.getExtras().getString("vga");
         String latitude = intent.getExtras().getString("latitude");
         String longitude = intent.getExtras().getString("longitude");
-        Log.e("Han", latitude + " test2 " + longitude);
 
-        // 프레그먼트에 데이터 보내주기
+        // pc정보 탭에 데이터 보내기
         Bundle bundle = new Bundle();
         bundle.putString("name", name);
         bundle.putString("address", address);
@@ -67,13 +53,16 @@ public class Pc_Info_TabActivity extends AppCompatActivity {
         bundle.putString("longitude",longitude);
         pc_info_tab.setArguments(bundle);
 
+        // 리뷰 탭에 데이터 보내기
         Bundle bundle2 = new Bundle();
         bundle2.putString("name", name);
         pc_review_tabFragment.setArguments(bundle);
 
+        // pc정보 탭이 기본으로 보여짐
         getSupportFragmentManager().beginTransaction().replace(R.id.container, pc_info_tab).commit();
 
 
+        // 탭 Listener
         tabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -108,5 +97,4 @@ public class Pc_Info_TabActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

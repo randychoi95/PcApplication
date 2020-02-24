@@ -15,9 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.PC_Member.PcMemberDTO;
-import com.ezen.MyPcApplication.After_Main.MainActivity;
 import com.ezen.MyPcApplication.First_View.FirstActivity;
 import com.ezen.MyPcApplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,8 +31,7 @@ import java.util.ArrayList;
 public class PersonInfoAdapter extends RecyclerView.Adapter<PersonInfoAdapter.ViewHolder> {
     setClickListener listener;
 
-    ArrayList<PersonInfoItem>
-            items = new ArrayList<PersonInfoItem>();
+    ArrayList<PersonInfoItem> items = new ArrayList<PersonInfoItem>();
     View itemView;
 
     FirebaseAuth auth = FirebaseAuth.getInstance();  // 파이어베이스 인증
@@ -108,6 +104,7 @@ public class PersonInfoAdapter extends RecyclerView.Adapter<PersonInfoAdapter.Vi
         void setClick(Intent intent);
     }
 
+    // 회원탈퇴 다이얼로그
     public void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(person_infoFragment.getContext());
 
@@ -161,6 +158,7 @@ public class PersonInfoAdapter extends RecyclerView.Adapter<PersonInfoAdapter.Vi
         alertDialog.show();
     }
 
+    // 회원탈퇴 메소드
     private void doDelete(){
         db = FirebaseFirestore.getInstance();
 

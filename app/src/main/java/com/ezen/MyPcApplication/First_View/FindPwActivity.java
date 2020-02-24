@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,17 +53,16 @@ public class FindPwActivity extends AppCompatActivity {
         EditText editText = id_input.getEditText();
         String email = editText.getText().toString();
 
-            auth.sendPasswordResetEmail(email)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(getApplicationContext(), "재설정 이메일 전송완료 \n재설정 이메일을 통해 비밀번호를 변경해주세요!!", Toast.LENGTH_LONG).show();
-                                finish();
-                            }
+        auth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(), "재설정 이메일 전송완료 \n재설정 이메일을 통해 비밀번호를 변경해주세요!!", Toast.LENGTH_LONG).show();
+                            finish();
                         }
-                    });
-
+                    }
+                });
     }
 
 }//class
