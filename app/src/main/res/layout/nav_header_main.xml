@@ -15,8 +15,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="149dp"
-        android:layout_height="89dp"
+        android:layout_width="130dp"
+        android:layout_height="55dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/user"
         android:contentDescription="@string/nav_header_desc"
@@ -29,6 +29,7 @@
         android:id="@+id/user_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/jua_regular"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="@string/nav_header_title"

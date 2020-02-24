@@ -30,7 +30,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="12dp"
             android:layout_marginRight="12dp"
-            android:background="#706F6F"
+            android:background="@drawable/text_background"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,11 +51,11 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:ems="10"
-                    android:fontFamily="@font/jua_regular"
+                    android:fontFamily="@font/nanumbrush"
                     android:hint="지역, 상호명을 입력하세요"
+                    android:textColorHint="#FFFF"
                     android:inputType="textPersonName"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="@android:color/white" />
+                    android:textColor="@android:color/white" />
 
                 <Button
                     android:id="@+id/btn_search"
@@ -80,7 +80,6 @@
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="5dp"
-            android:background="#706F6F"
             android:divider="#3F51B5"
             android:dividerHeight="10dp"
             app:layout_constraintBottom_toBottomOf="parent"

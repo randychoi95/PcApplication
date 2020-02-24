@@ -14,10 +14,8 @@
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="44dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,57 +25,50 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/darker_gray"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/text_background"
             android:orientation="horizontal">
 
-            <ImageView
+            <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/pc_image"
                 android:layout_width="150dp"
                 android:layout_height="70dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:scaleType="fitXY"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:src="@drawable/pc" />
+                android:scaleType="fitXY"
+                android:src="@drawable/pc"
+                app:riv_corner_radius="20dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="5"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/pc_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/nanumgothic_bold"
-                        android:text="Ezen 피시방"
-                        android:textColor="#FFFFFF"
-                        android:textSize="24sp" />
-
-                </LinearLayout>
-
+                <TextView
+                    android:id="@+id/pc_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/nanumbrush"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Ezen 피시방"
+                    android:textSize="36sp" />
 
                 <TextView
                     android:id="@+id/pc_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/jua_regular"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="7dp"
+                    android:fontFamily="@font/nanumbrush"
+                    android:gravity="center"
                     android:text="pc방 주소"
                     android:textColor="@android:color/background_light"
                     android:textSize="18sp" />
+
 
             </LinearLayout>
 
@@ -88,22 +79,40 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@android:color/white" />
+
             <com.google.android.gms.maps.MapView
                 android:id="@+id/map"
                 android:name="com.google.android.gms.maps.MapFragment"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp" />
+                android:layout_height="150dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
+
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@android:color/white" />
 
             <TextView
                 android:id="@+id/pc_info_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumgothic_bold"
+                android:layout_marginBottom="10dp"
                 android:text="PC방 사양"
+                android:textAllCaps="false"
                 android:textColor="@android:color/white"
-                android:textSize="30sp" />
+                android:textSize="24sp"
+                android:textStyle="bold|italic" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -117,7 +126,7 @@
                     android:fontFamily="@font/jua_regular"
                     android:text="VGA :"
                     android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/pc_vga_info"
@@ -127,7 +136,7 @@
                     android:fontFamily="@font/jua_regular"
                     android:text="VGA 사양"
                     android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
 
             </LinearLayout>
@@ -144,7 +153,7 @@
                     android:fontFamily="@font/jua_regular"
                     android:text="RAM :"
                     android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/pc_ram_info"
@@ -154,7 +163,7 @@
                     android:fontFamily="@font/jua_regular"
                     android:text="RAM 사양"
                     android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -169,7 +178,7 @@
                     android:fontFamily="@font/jua_regular"
                     android:text="CPU :"
                     android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/pc_cpu_info"
@@ -179,7 +188,7 @@
                     android:fontFamily="@font/jua_regular"
                     android:text="CPU사양"
                     android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -189,9 +198,8 @@
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/btn_background"
-            android:fontFamily="@font/jua_regular"
             android:text="예약하기"
             android:textColor="@android:color/black"
             android:textSize="24sp" />
