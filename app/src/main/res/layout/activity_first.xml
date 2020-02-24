@@ -33,7 +33,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:fontFamily="@font/test"
-        android:text="App Name"
+        android:text="PSeat"
         android:textColor="@android:color/background_light"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
