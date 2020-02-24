@@ -35,15 +35,18 @@ public class PcRoomIdFindActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pc_room_id_find);
 
+        // firebase
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
+        // pc방 이름 받기
         Intent intent = getIntent();
         pcname = intent.getStringExtra("pcname");
 
         name_edit = findViewById(R.id.name_edit);
         phone_edit = findViewById(R.id.phone_edit);
 
+        // 확인 버튼
         button_ok = findViewById(R.id.find_btn_ok);
         button_ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +55,7 @@ public class PcRoomIdFindActivity extends AppCompatActivity {
             }
         });
 
+        // 취소 버튼
         button_cancel = findViewById(R.id.find_btn_cancel);
         button_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +70,7 @@ public class PcRoomIdFindActivity extends AppCompatActivity {
         });
     }//oncreate
 
+    // 아이디 찾기 메소드
     private void findPcID(){
         String name = name_edit.getText().toString();
         String phone = phone_edit.getText().toString();

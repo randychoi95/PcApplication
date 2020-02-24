@@ -36,9 +36,11 @@ public class PcRoomPwFindActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pc_room_pw_find);
 
+        // firebase
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
+        // pc방 이름 가져오기
         Intent intent = getIntent();
         pcname = intent.getStringExtra("pcname");
 
@@ -97,6 +99,6 @@ public class PcRoomPwFindActivity extends AppCompatActivity {
                 }
             }
         });
-    }
+    } //findPcPW
 
 }//class

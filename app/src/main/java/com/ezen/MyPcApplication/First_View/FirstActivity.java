@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,16 +14,11 @@ import android.widget.Toast;
 import com.ezen.MyPcApplication.After_Main.MainActivity;
 import com.ezen.MyPcApplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
 
 public class FirstActivity extends AppCompatActivity {
 
@@ -42,6 +36,7 @@ public class FirstActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
 
+        // firebase
         firebaseAuth = FirebaseAuth.getInstance();
 
         if(firebaseAuth.getCurrentUser() != null){
@@ -63,6 +58,7 @@ public class FirstActivity extends AppCompatActivity {
         // TextInputEditText
         pw_edit_input = pw_text_input.getEditText();
 
+        // 로그인 버튼
         Button btn_login = findViewById(R.id.btn_login);
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +67,7 @@ public class FirstActivity extends AppCompatActivity {
             }
         });
 
+        // 회원가입 버튼
         Button btn_join = findViewById(R.id.btn_join);
         btn_join.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +79,7 @@ public class FirstActivity extends AppCompatActivity {
             }
         });
 
+        // 아이디 찾기
         TextView text_findID = findViewById(R.id.text_findID);
         text_findID.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +89,7 @@ public class FirstActivity extends AppCompatActivity {
             }
         });
 
+        // 비밀번호 찾기
         TextView text_findPW = findViewById(R.id.text_findPW);
         text_findPW.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,8 +98,9 @@ public class FirstActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }//End onCreate
+    }// onCreate
 
+    // 로그인 메소드
     private void doLogin(){
 
         EditText id_edit_text = findViewById(R.id.id_edit_text);
@@ -135,6 +135,7 @@ public class FirstActivity extends AppCompatActivity {
                 });
     }//doLoin
 
+    // 이메일 인증
     public void doEmailVerified(){
         user = firebaseAuth.getCurrentUser();
         user.sendEmailVerification()
@@ -153,8 +154,6 @@ public class FirstActivity extends AppCompatActivity {
                         }
                     }
                 });
-    }
-
-
+    } // doEmailVerified
 
 }//class

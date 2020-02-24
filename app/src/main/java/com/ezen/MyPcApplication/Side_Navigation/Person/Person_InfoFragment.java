@@ -18,14 +18,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ezen.MyPcApplication.After_Main.Notice_Tap.Noticeitem;
 import com.ezen.MyPcApplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -116,7 +113,6 @@ public class Person_InfoFragment extends Fragment implements PersonInfoAdapter.s
     // 개인정보 변경
     public void personInfoUpdate() {
             String userID = auth.getCurrentUser().getUid();
-
             db.collection("Member").document(userID).update("phone", editPhone.getText().toString());
             Toast.makeText(getContext(), "정보변경이 완료되었습니다.", Toast.LENGTH_SHORT).show();
     }

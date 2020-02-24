@@ -32,6 +32,7 @@ public class ReservationActivity extends AppCompatActivity {
 
     int pc_reservation_seat;
 
+    // pc방 좌석
     Button[] btnArrs = new Button[27];
     int[] btnid = {R.id.seat_1, R.id.seat_2, R.id.seat_3, R.id.seat_4, R.id.seat_5, R.id.seat_6, R.id.seat_7, R.id.seat_8,
                     R.id.seat_9, R.id.seat_10, R.id.seat_11, R.id.seat_12, R.id.seat_13, R.id.seat_14, R.id.seat_15, R.id.seat_16,
@@ -107,7 +108,7 @@ public class ReservationActivity extends AppCompatActivity {
                 }
             });
         }
-    }
+    }// onCreate
 
     // 초기 자리 상태( 0:예약 불가능, 1:예약 대기, 2:예약 가능)
     private void doFirst(int isEmpty, String seat){
@@ -126,7 +127,7 @@ public class ReservationActivity extends AppCompatActivity {
                 break;
             }
         }
-    }
+    }// doFirst
 
     // 예약확인 다이얼로그
     private void doDialog(final int seat_num){
@@ -166,7 +167,7 @@ public class ReservationActivity extends AppCompatActivity {
                     }
                 });
                 alertDialog.show();
-    }
+    }// doDialog
 
     // 예약자리를 옮길 경우 리셋
     private void reset(Button btn_num){
@@ -176,7 +177,6 @@ public class ReservationActivity extends AppCompatActivity {
 
     // 예약하기
     private void doReservation(){
-
         String current_uid = currentUser.getUid();
 
             if (myuid.equals(current_uid)) {
@@ -201,10 +201,9 @@ public class ReservationActivity extends AppCompatActivity {
             }else {
                 doAdd();
             }
+    }// doReservation
 
-
-    }
-
+    // db에 예약정보 저장
     private void doAdd(){
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
@@ -227,8 +226,9 @@ public class ReservationActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "예약에 실패하였습니다.", Toast.LENGTH_SHORT).show();
                     }
                 });
-    }
+    }// doAdd
 
+    // 이전 예약정보 삭제
     private void doDelete(){
         db.collection("Reservation").whereEqualTo("pcname", pcname).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -244,7 +244,7 @@ public class ReservationActivity extends AppCompatActivity {
                 }
             }
         });
-    }
+    }// doDelete
 
     // 뒤로가기 버튼 누를 시에 이벤트 동작
     @Override

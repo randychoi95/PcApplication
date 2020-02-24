@@ -7,18 +7,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.telephony.PhoneNumberFormattingTextWatcher;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.PC_Member.PcMemberDTO;
 import com.ezen.MyPcApplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,7 +23,6 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class JoinActivity extends AppCompatActivity {
@@ -58,7 +52,8 @@ public class JoinActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
-        
+
+        // firebase
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         user = firebaseAuth.getCurrentUser();
@@ -95,8 +90,9 @@ public class JoinActivity extends AppCompatActivity {
                 doJoin();
             }
         });
-    }
+    } // onCreate
 
+    // 회원가입 메소드
     public void doJoin(){
         email = member_id.getText().toString().trim();
         password = member_pw.getText().toString().trim();
@@ -141,9 +137,9 @@ public class JoinActivity extends AppCompatActivity {
             pw_check.setText("비밀번호가 일치하지 않습니다.");
         }
 
-    }
+    } // doJoin
 
-// DB collection에 저장
+    // DB collection에 저장
     private void doAdd(){
         String id = firebaseAuth.getCurrentUser().getEmail(); // 회원가입한 사용자 이메일
         String uid = firebaseAuth.getCurrentUser().getUid();  // 회원가입한 사용자 uid
@@ -175,6 +171,6 @@ public class JoinActivity extends AppCompatActivity {
                     }
                 });
 
-    }
+    } // doAdd
 
 }// Class

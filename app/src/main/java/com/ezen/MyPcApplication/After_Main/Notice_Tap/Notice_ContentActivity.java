@@ -1,26 +1,15 @@
 package com.ezen.MyPcApplication.After_Main.Notice_Tap;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ezen.MyPcApplication.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.List;
 
 public class Notice_ContentActivity extends AppCompatActivity {
-    String title;
-    String content;
     TextView textViewTitle;
     TextView text_content;
 

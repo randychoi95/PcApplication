@@ -1,13 +1,10 @@
 package com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AlertDialog;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,18 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.PC_Member.PcRoomLoginActivity;
 import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.StoreItem;
-import com.ezen.MyPcApplication.After_Main.MainActivity;
-import com.ezen.MyPcApplication.First_View.FirstActivity;
 import com.ezen.MyPcApplication.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -74,8 +67,6 @@ public class Pc_Info_TabFragment extends Fragment
             vga = extra.getString("vga");
             latitude = extra.getString("latitude");
             longitude = extra.getString("longitude");
-            Log.e("Han", latitude + " test3 " + longitude);
-
         }
 
         TextView pc_name = rootView.findViewById(R.id.pc_name);
@@ -93,6 +84,7 @@ public class Pc_Info_TabFragment extends Fragment
         TextView pc_vga_info = rootView.findViewById(R.id.pc_vga_info);
         pc_vga_info.setText(vga);
 
+        // 예약하기 버튼
         Button btn_reservation = rootView.findViewById(R.id.btn_reservation);
         btn_reservation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,7 +145,6 @@ public class Pc_Info_TabFragment extends Fragment
         super.onActivityCreated(savedInstanceState);
 
         //액티비티가 처음 생성될 때 실행되는 함수
-
         if(mapView != null)
         {
             mapView.onCreate(savedInstanceState);
@@ -163,27 +154,18 @@ public class Pc_Info_TabFragment extends Fragment
     @Override
     public void onMapReady(GoogleMap googleMap) {
         LatLng SEOUL = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
-
         MarkerOptions markerOptions = new MarkerOptions();
-
         markerOptions.position(SEOUL); // 마커 위치
-
         markerOptions.title(name); // 마커 타이틀
 
-//        markerOptions.snippet(name); // 마커 내용
-
         googleMap.addMarker(markerOptions); // 맵에 마커 추가
-
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(SEOUL)); // 구글맵 카메라 위치
-
         googleMap.animateCamera(CameraUpdateFactory.zoomTo(18)); // 구글맵 줌
     }
-
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
     }
 
 }

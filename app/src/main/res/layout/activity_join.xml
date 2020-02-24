@@ -5,172 +5,180 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:text="Member Join"
-        android:textSize="25dp"
-        android:textColor="#FFFF"
-        android:fontFamily="@font/test"
-        android:background="#A1000000"
-
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="55dp"
-        android:background="#C6000000"
-        android:orientation="vertical"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/name_input_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:textColorHint="#A3A2A2"
-            android:theme="@style/joinEdit">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#A1000000"
+            android:fontFamily="@font/test"
+            android:gravity="center"
+            android:text="Member Join"
+            android:textColor="#FFFF"
+            android:textSize="25dp"
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/member_name"
-                style="@style/TextAppearance.App.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:drawableStart="@drawable/ic_person_black_24dp"
-                android:hint="Name"
-                android:textColor="@android:color/white" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_input_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:textColorHint="#A3A2A2"
-            android:theme="@style/joinEdit">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/member_id"
-                style="@style/TextAppearance.App.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:drawableStart="@drawable/ic_label_outline_black_24dp"
-                android:hint="Email"
-                android:textColor="@android:color/white" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
+            android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_marginTop="55dp"
+            android:background="#C6000000"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/pw_input_layout"
+                android:id="@+id/name_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColorHint="#A3A2A2"
-                android:theme="@style/joinEdit">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/member_pw"
-                    android:layout_width="match_parent"
-                    android:layout_height="53dp"
-                    android:drawableStart="@drawable/ic_lock_outline_black_24dp"
-                    android:fontFamily="@font/test"
-                    android:hint="PW"
-                    android:textColor="@android:color/white" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/repw_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_weight="1"
                 android:textColorHint="#A3A2A2"
                 android:theme="@style/joinEdit">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/member_repw"
+                    android:id="@+id/member_name"
+                    style="@style/TextAppearance.App.TextInputLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="53dp"
-                    android:layout_marginLeft="5dp"
-                    android:hint="PW re"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:drawableStart="@drawable/ic_person_black_24dp"
+                    android:hint="Name"
                     android:textColor="@android:color/white" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/id_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:textColorHint="#A3A2A2"
+                android:theme="@style/joinEdit">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/member_id"
+                    style="@style/TextAppearance.App.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:drawableStart="@drawable/ic_label_outline_black_24dp"
+                    android:hint="Email"
+                    android:textColor="@android:color/white" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/pw_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHint="#A3A2A2"
+                    android:theme="@style/joinEdit">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/member_pw"
+                        android:layout_width="match_parent"
+                        android:layout_height="53dp"
+                        android:drawableStart="@drawable/ic_lock_outline_black_24dp"
+                        android:fontFamily="@font/test"
+                        android:hint="PW"
+                        android:textColor="@android:color/white" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/repw_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:textColorHint="#A3A2A2"
+                    android:theme="@style/joinEdit">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/member_repw"
+                        android:layout_width="match_parent"
+                        android:layout_height="53dp"
+                        android:layout_marginLeft="5dp"
+                        android:hint="PW re"
+                        android:textColor="@android:color/white" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/pw_check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phone_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:textColorHint="#A3A2A2"
+                android:theme="@style/joinEdit">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/member_phone"
+                    style="@style/TextAppearance.App.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_call_black_24dp"
+                    android:hint="Phone(-제외하고 입력하세요)"
+                    android:maxLength="13"
+                    android:textColor="@android:color/white" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_join"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/btn_background"
+                android:fontFamily="@font/test"
+                android:text="Join"
+                android:textSize="24sp" />
 
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/pw_check"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phone_input_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:textColorHint="#A3A2A2"
-            android:theme="@style/joinEdit">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/member_phone"
-                style="@style/TextAppearance.App.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_call_black_24dp"
-                android:hint="Phone(-제외하고 입력하세요)"
-                android:maxLength="13"
-                android:textColor="@android:color/white" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/btn_join"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/btn_background"
-            android:fontFamily="@font/test"
-            android:text="Join"
-            android:textSize="24sp" />
-
-
-    </LinearLayout>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

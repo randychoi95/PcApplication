@@ -1,6 +1,5 @@
 package com.ezen.MyPcApplication.Side_Navigation.Reservation;
 
-import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.PC_Reservation.ReservationDTO;
 public class Reservation_CheckDTO {
     private String seat;
     private String pcname;
