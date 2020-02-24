@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AlertDialog;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,8 +39,8 @@ public class Pc_Info_TabFragment extends Fragment
     String cpu;
     String ram;
     String vga;
-    Double latitude;
-    Double longitude;
+    String latitude;
+    String longitude;
 
 
     FirebaseFirestore db;
@@ -71,8 +72,9 @@ public class Pc_Info_TabFragment extends Fragment
             cpu = extra.getString("cpu");
             ram = extra.getString("ram");
             vga = extra.getString("vga");
-            latitude = extra.getDouble("latitude");
-            longitude = extra.getDouble("longitude");
+            latitude = extra.getString("latitude");
+            longitude = extra.getString("longitude");
+            Log.e("Han", latitude + " test3 " + longitude);
 
         }
 
@@ -160,21 +162,21 @@ public class Pc_Info_TabFragment extends Fragment
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        LatLng SEOUL = new LatLng(latitude, longitude);
+        LatLng SEOUL = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
 
         MarkerOptions markerOptions = new MarkerOptions();
 
-        markerOptions.position(SEOUL);
+        markerOptions.position(SEOUL); // 마커 위치
 
-        markerOptions.title(name);
+        markerOptions.title(name); // 마커 타이틀
 
-//        markerOptions.snippet(name); // 내용
+//        markerOptions.snippet(name); // 마커 내용
 
-        googleMap.addMarker(markerOptions);
+        googleMap.addMarker(markerOptions); // 맵에 마커 추가
 
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(SEOUL)); // 구글맵 카메라 위치
 
-        googleMap.animateCamera(CameraUpdateFactory.zoomTo(13));
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(18)); // 구글맵 줌
     }
 
 

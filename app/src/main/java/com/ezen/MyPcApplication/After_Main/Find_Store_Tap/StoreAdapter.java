@@ -64,6 +64,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
                 intent.putExtra("vga", items.get(position).getVga());
                 intent.putExtra("latitude", items.get(position).getLatitude());
                 intent.putExtra("longitude", items.get(position).getLongitude());
+                Log.e("Han", items.get(position).getLatitude() + " test1 " + items.get(position).getLatitude());
                 listener.setClick(intent);
                 
             }

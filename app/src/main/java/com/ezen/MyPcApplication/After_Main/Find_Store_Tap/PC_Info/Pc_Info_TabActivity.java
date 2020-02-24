@@ -52,8 +52,9 @@ public class Pc_Info_TabActivity extends AppCompatActivity {
         String cpu = intent.getExtras().getString("cpu");
         String ram = intent.getExtras().getString("ram");
         String vga = intent.getExtras().getString("vga");
-        Double latitude = intent.getExtras().getDouble("latitude");
-        Double longitude = intent.getExtras().getDouble("longitude");
+        String latitude = intent.getExtras().getString("latitude");
+        String longitude = intent.getExtras().getString("longitude");
+        Log.e("Han", latitude + " test2 " + longitude);
 
         // 프레그먼트에 데이터 보내주기
         Bundle bundle = new Bundle();
@@ -62,8 +63,8 @@ public class Pc_Info_TabActivity extends AppCompatActivity {
         bundle.putString("cpu", cpu);
         bundle.putString("ram", ram);
         bundle.putString("vga", vga);
-        bundle.putDouble("latitude",latitude);
-        bundle.putDouble("longitude",longitude);
+        bundle.putString("latitude",latitude);
+        bundle.putString("longitude",longitude);
         pc_info_tab.setArguments(bundle);
 
         Bundle bundle2 = new Bundle();
