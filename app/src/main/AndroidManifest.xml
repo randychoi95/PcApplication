@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/applogo"
         android:label="PSeat"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/applogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -53,7 +53,7 @@
         </activity>
         <activity
             android:name=".After_Main.MainActivity"
-            android:label="MyPCapplication"
+            android:label="PSeat"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

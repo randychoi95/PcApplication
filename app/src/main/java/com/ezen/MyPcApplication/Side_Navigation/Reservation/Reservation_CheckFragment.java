@@ -63,7 +63,7 @@ public class Reservation_CheckFragment extends Fragment {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot snapshot : queryDocumentSnapshots){
                     Reservation_CheckDTO reservationCheckDTO = snapshot.toObject(Reservation_CheckDTO.class);
-                    reservationCheckAdapter.addItem(new Reservation_CheckDTO(reservationCheckDTO.getSeat(), reservationCheckDTO.getDate()));
+                    reservationCheckAdapter.addItem(new Reservation_CheckDTO(reservationCheckDTO.getSeat(), reservationCheckDTO.getPcname(), reservationCheckDTO.getDate()));
                 }
                 reservationCheckAdapter.Reverse();
                 list_reservation.setAdapter(reservationCheckAdapter);

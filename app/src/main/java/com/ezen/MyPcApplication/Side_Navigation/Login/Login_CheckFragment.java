@@ -33,9 +33,15 @@ public class Login_CheckFragment extends Fragment {
 
         // 아답터 클래스 생성
         loginCheckAdapter = new LoginCheckAdapter();
-        loginCheckAdapter.addItem(new LoginCheckItem("2020.02.05", "파브 PC방 의정부점"));
-        loginCheckAdapter.addItem(new LoginCheckItem("2020.02.05", "파브 PC방 의정부점"));
-        loginCheckAdapter.addItem(new LoginCheckItem("2020.02.05", "파브 PC방 의정부점"));
+        loginCheckAdapter.addItem(new LoginCheckItem("2020.02.23", "크라우드PC방 노원역점"));
+        loginCheckAdapter.addItem(new LoginCheckItem("2020.02.19", "로하스PC방 노원역점"));
+        loginCheckAdapter.addItem(new LoginCheckItem("2020.02.15", "쇼타임PC방노원역점"));
+        loginCheckAdapter.addItem(new LoginCheckItem("2020.02.11", "퍼니 링크PC방"));
+        loginCheckAdapter.addItem(new LoginCheckItem("2020.02.07", "닥터PC방"));
+        loginCheckAdapter.addItem(new LoginCheckItem("2020.02.04", "쇼타임PC방노원역점"));
+        loginCheckAdapter.addItem(new LoginCheckItem("2020.01.23", "크라우드PC방 노원역점"));
+        loginCheckAdapter.addItem(new LoginCheckItem("2020.01.22", "로하스PC방 노원역점"));
+        loginCheckAdapter.addItem(new LoginCheckItem("2020.01.19", "크라우드PC방 노원역점"));
 
         list_login.setAdapter(loginCheckAdapter);
 

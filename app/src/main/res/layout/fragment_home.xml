@@ -128,7 +128,7 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginLeft="12dp"
                     android:fontFamily="@font/nanumbrush"
-                    android:text="노원학생"
+                    android:text="Ezen"
                     android:textColor="@android:color/white"
                     android:textSize="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
