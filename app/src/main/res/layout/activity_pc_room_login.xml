@@ -69,7 +69,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/pcroom_pw_input"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
@@ -128,36 +128,42 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_Pclogin" />
 
-        <TextView
-            android:id="@+id/text_findID"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="113dp"
-            android:layout_marginLeft="113dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="43dp"
-            android:fontFamily="@font/test"
-            android:text="Find ID"
-            android:textColor="@android:color/background_light"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_Pcjoin"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/text_findPW"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="113dp"
-            android:layout_marginRight="113dp"
-            android:fontFamily="@font/test"
-            android:text="Find PW"
-            android:textColor="@android:color/background_light"
-            android:textSize="20sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_Pcjoin" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_Pcjoin">
+
+            <TextView
+                android:id="@+id/text_findID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/test"
+                android:text="Find ID"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp" />
+
+            <Space
+                android:layout_width="100dp"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:id="@+id/text_findPW"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/test"
+                android:text="Find PW"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
