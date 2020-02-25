@@ -134,8 +134,7 @@ public class PcRoomPwResetActivity extends AppCompatActivity {
         if(password_edit.getText().toString().equals(password_edit2.getText().toString())){
             String pw = password_edit.getText().toString();
 
-            PcMemberDTO pcMemberDTO = new PcMemberDTO(singleMemberDTO.getName(), singleMemberDTO.getId(), pw, singleMemberDTO.getBirth(), singleMemberDTO.getPhone(), singleMemberDTO.getUid(),
-                    singleMemberDTO.getEmail(), pcname);
+            PcMemberDTO pcMemberDTO = new PcMemberDTO(singleMemberDTO.getName(), singleMemberDTO.getId(), pw, singleMemberDTO.getBirth(), singleMemberDTO.getPhone(), pcname);
 
             //add()함수를 사용하면, auto ID가 자동으로 발급됨.
             db.collection("PcMember")

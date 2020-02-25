@@ -51,6 +51,9 @@ public class PcRoomLoginActivity extends AppCompatActivity {
     // 피시방 이름 변수
     String pcname;
 
+    // 회원 번호
+    String phone;
+
     // 재시작할 때 정보 가져오기
     @Override
     protected void onRestart() {
@@ -202,13 +205,13 @@ public class PcRoomLoginActivity extends AppCompatActivity {
                     // 성인이면
                     } else {
                         String id = pcroom_id_edit.getText().toString();
-                        String uid = singleMemberDTO.getUid();
+                        phone = singleMemberDTO.getPhone();
                         pcroom_id_edit.setText("");
                         pcroom_pw_edit.setText("");
                         Intent intent = new Intent(getApplicationContext(), ReservationActivity.class);
                         intent.putExtra("pcname", pcname);
                         intent.putExtra("id", id);
-                        intent.putExtra("uid", uid);
+                        intent.putExtra("phone", phone);
                         startActivity(intent);
                         finish();
                         Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();

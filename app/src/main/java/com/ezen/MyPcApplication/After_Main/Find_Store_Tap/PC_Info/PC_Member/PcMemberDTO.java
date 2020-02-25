@@ -7,24 +7,16 @@ public class PcMemberDTO {
     private String pw;
     private String birth;
     private String phone;
-    private String uid;
-    private String email;
     private String pcname;
 
     public PcMemberDTO(){}
 
-    public PcMemberDTO(String pw) {
-        this.pw = pw;
-    }
-
-    public PcMemberDTO(String name, String id, String pw, String birth, String phone, String uid, String email, String pcname) {
+    public PcMemberDTO(String name, String id, String pw, String birth, String phone, String pcname) {
         this.name = name;
         this.id = id;
         this.pw = pw;
         this.birth = birth;
         this.phone = phone;
-        this.uid = uid;
-        this.email = email;
         this.pcname = pcname;
     }
 
@@ -66,22 +58,6 @@ public class PcMemberDTO {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPcname() {

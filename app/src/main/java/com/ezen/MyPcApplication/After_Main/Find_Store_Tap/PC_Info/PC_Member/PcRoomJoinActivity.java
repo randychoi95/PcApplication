@@ -155,7 +155,7 @@ public class PcRoomJoinActivity extends AppCompatActivity {
                     birth_check.setText("");
                     if (userPhone.getText().toString().length() == 11 &&
                             !userPhone.getText().toString().contains("-")) {
-                        checkId();
+                        checkMember();
                     } else {
                         phone_check = findViewById(R.id.phone_check);
                         phone_check.setTextColor(Color.RED);
@@ -181,8 +181,8 @@ public class PcRoomJoinActivity extends AppCompatActivity {
 
     } // doPcJoin
 
-    // 아이디 중복확인
-    private void checkId(){
+    // 이미 가입되어있는지 아이디가 중복인지 확인
+    private void checkMember(){
         checkId = userId.getText().toString().trim();
         db.collection("PcMember")
                 .get()
@@ -192,14 +192,23 @@ public class PcRoomJoinActivity extends AppCompatActivity {
                         List<PcMemberDTO> pcMemberDTOList = task.getResult().toObjects(PcMemberDTO.class);
                         for(PcMemberDTO pcMemberDTO : pcMemberDTOList) {
                             if (pcMemberDTO.getPcname().equals(pcname)) {
-                                if (pcMemberDTO.getId().equals(checkId)) {
-                                    Toast.makeText(getApplicationContext(), "중복된 아이디입니다.", Toast.LENGTH_SHORT).show();
+                                if(!pcMemberDTO.getPhone().equals(phone)) {
+                                    if (pcMemberDTO.getId().equals(checkId)) {
+                                        Toast.makeText(getApplicationContext(), "중복된 아이디입니다.", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "이미 가입되어 있습니다.", Toast.LENGTH_SHORT).show();
+                                    finish();
                                     return;
                                 }
                             }
                         }
                         doAdd();
                         Toast.makeText(getApplicationContext(), "회원가입이 되었습니다.", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), PcRoomLoginActivity.class);
+                        intent.putExtra("name", pcname);
+                        startActivity(intent);
                         finish();
                     }
                 });
@@ -229,10 +238,8 @@ public class PcRoomJoinActivity extends AppCompatActivity {
         String pw = userPw.getText().toString();
         String birth = userBirth.getText().toString();
         String phone = userPhone.getText().toString();
-        String uid = currentUser.getUid();
-        String email = currentUser.getEmail();
 
-        PcMemberDTO pcMemberDTO = new PcMemberDTO(name, id, pw, birth, phone, uid, email, pcname);
+        PcMemberDTO pcMemberDTO = new PcMemberDTO(name, id, pw, birth, phone, pcname);
 
         db.collection("PcMember")
                 .add( pcMemberDTO )

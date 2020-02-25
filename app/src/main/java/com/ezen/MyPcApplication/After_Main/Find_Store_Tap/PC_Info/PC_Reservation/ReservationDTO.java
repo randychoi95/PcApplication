@@ -7,7 +7,7 @@ public class ReservationDTO {
     private String seat;
     private String date;
     private int isEmpty;
-    private String uid;
+    private String phone;
 
     public ReservationDTO(){}
 
@@ -16,13 +16,13 @@ public class ReservationDTO {
         this.date = date;
     }
 
-    public ReservationDTO(String pcname, String id, String seat, String date, int isEmpty, String uid) {
+    public ReservationDTO(String pcname, String id, String seat, String date, int isEmpty, String phone) {
         this.pcname = pcname;
         this.id = id;
         this.seat = seat;
         this.date = date;
         this.isEmpty = isEmpty;
-        this.uid = uid;
+        this.phone = phone;
     }
 
     public String getPcname() {
@@ -65,11 +65,11 @@ public class ReservationDTO {
         this.isEmpty = isEmpty;
     }
 
-    public String getUid() {
-        return uid;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

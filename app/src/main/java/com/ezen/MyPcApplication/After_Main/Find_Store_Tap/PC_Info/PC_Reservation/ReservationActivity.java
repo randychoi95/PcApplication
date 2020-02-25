@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.Pc_Info_TabActivity;
+import com.ezen.MyPcApplication.First_View.JoinItem;
 import com.ezen.MyPcApplication.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -51,8 +52,8 @@ public class ReservationActivity extends AppCompatActivity {
     String id;
     int isEmpty;
     String seat;
-    String myuid; // 내 계정에서 나의 Pc방 id로 로그인한 사람 uid
-    String otheruid; // 내 계정에서 다른 사람의 Pc방 id로 로그인한 사람 uid
+    String myPhone; // 나의 현재 핸드폰 번호
+    String comparePhone; // 비교할 번호
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +68,26 @@ public class ReservationActivity extends AppCompatActivity {
         Intent intent = getIntent();
         pcname = intent.getStringExtra("pcname");
         id = intent.getStringExtra("id");
-        myuid = intent.getStringExtra("uid");
+        comparePhone = intent.getStringExtra("phone");
+        Log.e("comparePhone", comparePhone);
 
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
+
+        // 현재 어플 사용자 ID가져오기
+        String email = currentUser.getEmail();
+        // 현재 어플 사용자 핸드폰 번호 가져오기
+        db.collection("Member").whereEqualTo("id", email).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(DocumentSnapshot snapshot : queryDocumentSnapshots){
+                    JoinItem joinItem = snapshot.toObject(JoinItem.class);
+                    myPhone = joinItem.getPhone();
+                    return;
+                }
+            }
+        });
 
         // 생성 시 피시방 회원 테이블 가져오기
         db.collection("Reservation").whereEqualTo("pcname", pcname).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -82,7 +98,6 @@ public class ReservationActivity extends AppCompatActivity {
                     if(id.equals(reservationDTO.getId())){
                         isEmpty = reservationDTO.getIsEmpty();
                         seat = reservationDTO.getSeat();
-                        otheruid = reservationDTO.getUid();
                         doFirst(isEmpty, seat);
                         return;
                     }
@@ -178,30 +193,26 @@ public class ReservationActivity extends AppCompatActivity {
 
     // 예약하기
     private void doReservation(){
-        String current_uid = currentUser.getUid();
-
-            if (myuid.equals(current_uid)) {
-                doDelete();
-                try {
-                    Thread.sleep(1000);
-                    doAdd();
-                    return;
-                } catch (Exception e) {
-                }
-            }
-            if(otheruid != null) {
-                if (otheruid.equals(myuid)) {
-                    doDelete();
-                    try {
-                        Thread.sleep(1000);
-                        doAdd();
-                        return;
-                    } catch (Exception e) {
-                    }
-                }
-            }else {
+        // 현재번호와 비교할 번호가 같으면
+        if (comparePhone.equals(myPhone)) {
+            // 이전 정보 삭제하고 새로운 정보 추가
+            doDelete(comparePhone);
+            try {
+                Thread.sleep(1000);
                 doAdd();
+                return;
+            } catch (Exception e) {
             }
+            // 다르면 정보 추가
+        } else {
+            doDelete(comparePhone);
+            try {
+                Thread.sleep(1000);
+                doAdd();
+                return;
+            } catch (Exception e) {
+            }
+        }
     }// doReservation
 
     // db에 예약정보 저장
@@ -210,14 +221,15 @@ public class ReservationActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 
         ReservationDTO reservationDTO = new ReservationDTO(pcname, id, Integer.toString(pc_reservation_seat),
-                sdf.format(cal.getTime()), 1, myuid);
+                sdf.format(cal.getTime()), 1, comparePhone);
 
         db.collection("Reservation")
                 .add( reservationDTO )
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-
+                        // 현재 번호를 비교할 번호로 저장
+                        myPhone = comparePhone;
                         Toast.makeText(getApplicationContext(), "예약이 되었습니다", Toast.LENGTH_SHORT).show();
                     }
                 })
@@ -230,13 +242,13 @@ public class ReservationActivity extends AppCompatActivity {
     }// doAdd
 
     // 이전 예약정보 삭제
-    private void doDelete(){
+    private void doDelete(final String str){
         db.collection("Reservation").whereEqualTo("pcname", pcname).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot snapshot : queryDocumentSnapshots){
                     ReservationDTO reservationDTO = snapshot.toObject(ReservationDTO.class);
-                    if(id.equals(reservationDTO.getId())){
+                    if(str.equals(reservationDTO.getPhone())){
                         String documentID = snapshot.getId();
                         db.collection("Reservation").document(documentID).delete();
                         Log.e("delete", "삭제 성공");

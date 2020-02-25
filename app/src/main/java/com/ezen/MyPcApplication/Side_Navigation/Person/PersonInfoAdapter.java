@@ -110,10 +110,10 @@ public class PersonInfoAdapter extends RecyclerView.Adapter<PersonInfoAdapter.Vi
 
         builder.setTitle("회원 탈퇴").setMessage("정말 회원탈퇴 하시겠습니까 ?");
 
-
         builder.setNegativeButton("예", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int id) {
+                // firebase 회원탈퇴
                 currentUser.delete()
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override

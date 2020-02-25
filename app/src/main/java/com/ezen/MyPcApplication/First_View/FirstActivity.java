@@ -138,22 +138,25 @@ public class FirstActivity extends AppCompatActivity {
     // 이메일 인증
     public void doEmailVerified(){
         user = firebaseAuth.getCurrentUser();
-        user.sendEmailVerification()
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            if(user.isEmailVerified()) {
-                                finish();
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(intent);
-                                Toast.makeText(getApplicationContext(), "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(getApplicationContext(), "로그인 인증이 필요합니다.", Toast.LENGTH_SHORT).show();
+        if(user.isEmailVerified()) {
+            finish();
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            Toast.makeText(getApplicationContext(), "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(getApplicationContext(), "로그인 인증이 필요합니다.", Toast.LENGTH_SHORT).show();
+            user.sendEmailVerification()
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                if (user.isEmailVerified()) {
+
+                                }
                             }
                         }
-                    }
-                });
+                    });
+        }
     } // doEmailVerified
 
 }//class
