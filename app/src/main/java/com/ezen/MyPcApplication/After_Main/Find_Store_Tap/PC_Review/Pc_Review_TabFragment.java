@@ -95,7 +95,12 @@ public class Pc_Review_TabFragment extends Fragment {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (DocumentSnapshot snapshots : queryDocumentSnapshots) {
                     Pc_Review_AdapterItem adapterItem = snapshots.toObject(Pc_Review_AdapterItem.class);
-                    pc_review_adapter.addItem(new Pc_Review_AdapterItem(adapterItem.getName(), adapterItem.getDate(), adapterItem.getComments(), R.drawable.user));
+                    String newName = adapterItem.getName().substring(0, 1);
+                    String newName2 = adapterItem.getName().substring(1);
+                    String newName3 = newName2.replace(newName2, "**");
+                    String newName4 = newName + newName3;
+
+                    pc_review_adapter.addItem(new Pc_Review_AdapterItem(newName4, adapterItem.getDate(), adapterItem.getComments(), R.drawable.user));
                 }
                 pc_review_adapter.Reverse();
 

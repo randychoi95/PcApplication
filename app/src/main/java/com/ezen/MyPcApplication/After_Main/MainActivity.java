@@ -3,6 +3,7 @@ package com.ezen.MyPcApplication.After_Main;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -209,7 +210,7 @@ public class MainActivity extends AppCompatActivity
             sb.append( permission );
             sb.append( "," );
         }
-        Toast.makeText(this, sb.toString(), Toast.LENGTH_SHORT).show();
+        Log.e("denied", sb.toString());
     }
 
     @Override
@@ -219,7 +220,8 @@ public class MainActivity extends AppCompatActivity
             sb.append( permission );
             sb.append( "," );
         }
-        Toast.makeText(this, sb.toString(), Toast.LENGTH_SHORT).show();
+        Log.e("grandted", sb.toString());
+
     }
 
 }
