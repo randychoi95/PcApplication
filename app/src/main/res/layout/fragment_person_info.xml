@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     tools:context=".Side_Navigation.Person.Person_InfoFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="409dp"
-        android:layout_height="228dp"
+        android:layout_width="0dp"
+        android:layout_height="230dp"
         android:layout_marginTop="55dp"
         android:layout_marginBottom="106dp"
         android:background="#706F6F"
