@@ -40,6 +40,8 @@ public class PersonInfoAdapter extends RecyclerView.Adapter<PersonInfoAdapter.Vi
 
     Person_InfoFragment person_infoFragment;
 
+    String uid = currentUser.getUid();
+
     public PersonInfoAdapter(Activity activity) {
 
     }
@@ -162,7 +164,7 @@ public class PersonInfoAdapter extends RecyclerView.Adapter<PersonInfoAdapter.Vi
     private void doDelete(){
         db = FirebaseFirestore.getInstance();
 
-        db.collection("Member").whereEqualTo("uid", currentUser.getUid()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("Member").whereEqualTo("uid", uid).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot snapshot : queryDocumentSnapshots){

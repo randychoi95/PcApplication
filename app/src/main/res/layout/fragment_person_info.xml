@@ -31,7 +31,7 @@
 
         <TextView
             android:id="@+id/email_Text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
@@ -41,6 +41,7 @@
             android:textColor="@android:color/black"
             android:textSize="30sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/textEmail"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textEmail" />
 
         <TextView
@@ -59,7 +60,7 @@
 
         <EditText
             android:id="@+id/editPhone"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
@@ -70,6 +71,7 @@
             android:text="010-1234-5678"
             android:textSize="30sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/textPhone"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textPhone" />
 
         <Button
