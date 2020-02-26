@@ -129,6 +129,8 @@ public class JoinActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 doAdd();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "이메일형식으로 입력하세요", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -145,7 +147,6 @@ public class JoinActivity extends AppCompatActivity {
         String uid = firebaseAuth.getCurrentUser().getUid();  // 회원가입한 사용자 uid
         String phone = member_phone.getText().toString();
         String name = member_name.getText().toString();
-
 
         JoinItem joinItem = new JoinItem(id, phone, uid, name);
 

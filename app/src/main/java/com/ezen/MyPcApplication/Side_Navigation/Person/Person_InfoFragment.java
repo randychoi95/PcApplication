@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ezen.MyPcApplication.After_Main.Find_Store_Tap.PC_Info.PC_Member.PcMemberDTO;
 import com.ezen.MyPcApplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
