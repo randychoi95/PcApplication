@@ -42,7 +42,6 @@ public class FindIdActivity extends AppCompatActivity {
 
         find_edit_name = findViewById(R.id.find_edit_name);
         find_edit_phone = findViewById(R.id.find_edit_phone);
-        find_edit_phone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         // 아이디 찾기 버튼
         button_ok = findViewById(R.id.find_btn_ok);

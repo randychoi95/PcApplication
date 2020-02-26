@@ -65,7 +65,7 @@
             android:fontFamily="@font/jua_regular"
             android:ems="10"
             android:hint="비밀번호를 재입력하시오."
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:textSize="18sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/textRePw2"
             app:layout_constraintStart_toEndOf="@+id/textRePw2" />
