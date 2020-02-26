@@ -77,4 +77,5 @@ dependencies {
     // 구글맵
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.github.pedroSG94:AutoPermissions:1.0.3'
+
 }
